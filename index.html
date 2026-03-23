@@ -228,7 +228,7 @@ label{display:block;font-size:12px;font-weight:700;color:rgba(167,139,250,0.9);m
 const {useState,useEffect,useRef,useCallback}=React;
 
 /* ── Routes ── */
-const R={HOME:"home",YT:"yt",IG:"ig",ALL:"all",ABOUT:"about",PRIVACY:"privacy",TERMS:"terms",CONTACT:"contact",TOOL:"tool",TRENDING:"trending"};
+const R={HOME:"home",YT:"yt",IG:"ig",ALL:"all",ABOUT:"about",PRIVACY:"privacy",TERMS:"terms",CONTACT:"contact",TOOL:"tool",TRENDING:"trending",FAQ:"faq",BLOG:"blog",BLOGPOST:"blogpost"};
 
 /* ── Tool data ── */
 const CORE_TOOLS=[
@@ -517,6 +517,8 @@ function Navbar({cur,go}){
           </div>
           {links.map(l=><button key={l.r} className={`dr-item${cur===l.r?" active":""}`} onClick={()=>go(l.r)}><span>{l.l==="YouTube"?"▶️":l.l==="Instagram"?"📸":l.l==="All Tools"?"🛠️":"ℹ️"}</span>{l.l}</button>)}
           <div style={{height:1,background:"rgba(255,255,255,.06)",margin:"14px 0"}}/>
+          <button className="dr-item" onClick={()=>go(R.BLOG)}><span>📝</span>Blog</button>
+          <button className="dr-item" onClick={()=>go(R.FAQ)}><span>❓</span>FAQ</button>
           <button className="dr-item" onClick={()=>go(R.CONTACT)}><span>✉️</span>Contact</button>
           <div style={{marginTop:18}}>
             <button className="btn-grad" style={{width:"100%",justifyContent:"center",padding:"15px",borderRadius:50,fontSize:16}} onClick={()=>go(R.ALL)}>🚀 Explore All Tools</button>
@@ -565,7 +567,7 @@ function Footer({go,setTool}){
         </div>
         <div>
           <div style={{fontWeight:700,fontSize:12,marginBottom:10,color:"var(--txt2)"}}>Company</div>
-          {[{l:"About",r:R.ABOUT},{l:"Contact",r:R.CONTACT},{l:"Privacy",r:R.PRIVACY},{l:"Terms",r:R.TERMS}].map(x=><button key={x.r} onClick={()=>go(x.r)} style={{display:"block",background:"none",border:"none",color:"var(--txt3)",fontSize:12,padding:"3px 0",cursor:"pointer",textAlign:"left",fontFamily:"var(--f)"}}>{x.l}</button>)}
+          {[{l:"About",r:R.ABOUT},{l:"Blog",r:R.BLOG},{l:"FAQ",r:R.FAQ},{l:"Contact",r:R.CONTACT},{l:"Privacy",r:R.PRIVACY},{l:"Terms",r:R.TERMS}].map(x=><button key={x.r} onClick={()=>go(x.r)} style={{display:"block",background:"none",border:"none",color:"var(--txt3)",fontSize:12,padding:"3px 0",cursor:"pointer",textAlign:"left",fontFamily:"var(--f)"}}>{x.l}</button>)}
         </div>
       </div>
       <div style={{borderTop:"1px solid rgba(255,255,255,.05)",paddingTop:14,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:8}}>
@@ -1191,24 +1193,464 @@ function ContactPage({go,setTool}){
 }
 
 /* ══════════════════════════════════════════════════════
-   APP ROOT
+   FAQ PAGE
 ══════════════════════════════════════════════════════ */
+const FAQ_DATA = [
+  {
+    cat:"General",icon:"🌐",
+    items:[
+      {q:"What is Virlofy.ai?",a:"Virlofy.ai is a free all-in-one AI-powered creator tool platform. It helps YouTube and Instagram creators generate viral titles, captions, hashtags, hooks, scripts, content ideas, and more — completely free with no login required."},
+      {q:"Is Virlofy.ai really 100% free?",a:"Yes, absolutely. Every tool on Virlofy.ai is 100% free to use. There is no subscription, no paywall, and no credit card required. We are supported by non-intrusive ads so you can keep creating for free."},
+      {q:"Do I need to create an account?",a:"No account or sign-up is needed. Just visit the website, pick your tool, enter your topic, and get results instantly. Your privacy is our priority — we don't collect or store any of your inputs."},
+      {q:"How many times can I use the tools?",a:"Unlimited! You can generate as many times as you want. Every generation produces unique results thanks to our smart randomisation engine with 15–20 template variations per tool."},
+    ]
+  },
+  {
+    cat:"YouTube Tools",icon:"▶️",
+    items:[
+      {q:"How does the YouTube Title Generator work?",a:"Enter your video topic and optionally your niche. Our AI engine analyses thousands of viral video patterns and generates 10 unique titles using proven copywriting formulas — power words, numbers, emotional triggers, and curiosity hooks — all tailored to maximise click-through rate."},
+      {q:"What is CTR and why does it matter?",a:"CTR (Click-Through Rate) is the percentage of people who click your video after seeing the thumbnail. A higher CTR means YouTube pushes your video to more people. Our Title Score Checker scores your title from 0–100 and gives specific suggestions to improve it."},
+      {q:"Can I use the Script Writer for long-form videos?",a:"Yes! The Script Writer generates a full structured outline including an attention-grabbing intro, 4–5 main points with engagement hooks, and a strong call-to-action outro. It works for any video length from short-form to 20+ minute deep dives."},
+      {q:"How do I pick the best tags for my YouTube video?",a:"Use our Tags Generator — enter your video topic and niche, and we'll generate 13 SEO-optimised tags mixing broad, specific, and long-tail keywords. Copy them all with one click and paste directly into YouTube Studio."},
+      {q:"What makes a good YouTube thumbnail text?",a:"The best thumbnail text is short (3–5 words max), uses ALL CAPS, triggers an emotion (shock, curiosity, or transformation), and complements rather than repeats your title. Our Thumbnail Text Generator creates 8 options per request."},
+    ]
+  },
+  {
+    cat:"Instagram Tools",icon:"📸",
+    items:[
+      {q:"How do I write a caption that gets engagement?",a:"Great captions open with a hook (first line visible without 'more'), tell a story or share an opinion, use line breaks for readability, include a call-to-action (question or instruction), and end with 3–5 relevant hashtags. Our Caption Generator creates 5 unique variations per request."},
+      {q:"How many hashtags should I use on Instagram?",a:"Instagram recommends using 3–5 highly relevant hashtags for the best reach in 2024. However, mixing 10–15 tags across high, medium, and low competition levels can also work. Our Hashtag Generator creates 3 ready-to-use sets ranked by performance tier."},
+      {q:"What makes a Reel go viral?",a:"Viral Reels share 4 key traits: a strong hook in the first 2–3 seconds, genuine value or entertainment, a clear call-to-action, and a trending audio or format. Use our Reel Hook Generator to nail the critical opening seconds that determine watch time."},
+      {q:"How do I write an Instagram bio that converts?",a:"A high-converting bio clearly states who you help, what you do, and why they should follow — all in under 150 characters. It should include an emoji for visual break-up, a value proposition, and a CTA with a link. Our Bio Generator creates 5 unique options."},
+    ]
+  },
+  {
+    cat:"Advanced Tools",icon:"✨",
+    items:[
+      {q:"What is the 7-Day Content Planner?",a:"The Viral Content Planner creates a complete week of content for your niche — one idea per day covering Reels, carousels, static posts, hooks, captions, and stories. It's designed to eliminate content block and keep your posting consistent."},
+      {q:"How does the Title Score Checker work?",a:"It analyses your YouTube title across 5 factors: character length (ideal 40–60), presence of numbers, power words, emotional triggers, and punctuation. You get a score from 0–100, colour-coded feedback, and 3 specific improvement suggestions."},
+      {q:"What is the Before vs After Generator?",a:"It shows you a side-by-side comparison of weak, average content versus optimised viral-ready content for your topic. This helps you instantly see and understand the difference between low-performing and high-performing titles, hooks, and captions."},
+      {q:"How does the Hashtag Performance System work?",a:"It categorises hashtags into 3 tiers: High Reach (large audiences, competitive), Medium Growth (balanced reach and competition), and Low Competition (easier to rank, niche audiences). Mixing all three tiers is the proven strategy for Instagram growth."},
+    ]
+  },
+];
+
+function FAQPage({go,setTool}){
+  const [open,setOpen]=useState(null);
+  const toggle=key=>setOpen(o=>o===key?null:key);
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:720,margin:"0 auto"}}>
+      {/* Header */}
+      <div className="fu" style={{textAlign:"center",marginBottom:36}}>
+        <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(124,58,237,.1)",border:"1px solid rgba(124,58,237,.25)",borderRadius:999,padding:"7px 18px",fontSize:12,fontWeight:700,color:"#a78bfa",marginBottom:16}}>
+          ❓ Frequently Asked Questions
+        </div>
+        <h1 style={{fontSize:"clamp(26px,6vw,42px)",fontWeight:900,letterSpacing:"-.02em",lineHeight:1.1,marginBottom:10}}>
+          Got <span className="g-text">Questions?</span><br/>We've Got Answers.
+        </h1>
+        <p style={{color:"var(--txt2)",fontSize:15,lineHeight:1.7,maxWidth:460,margin:"0 auto"}}>
+          Everything you need to know about Virlofy.ai and our free creator tools.
+        </p>
+      </div>
+
+      <AdB/>
+
+      {FAQ_DATA.map((cat,ci)=>(
+        <div key={ci} style={{marginBottom:32}}>
+          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
+            <span style={{fontSize:20}}>{cat.icon}</span>
+            <h2 style={{fontSize:18,fontWeight:800,letterSpacing:"-.01em"}}>{cat.cat}</h2>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",gap:8}}>
+            {cat.items.map((item,qi)=>{
+              const key=`${ci}-${qi}`;
+              const isOpen=open===key;
+              return(
+                <div key={qi} style={{background:isOpen?"rgba(124,58,237,.08)":"rgba(255,255,255,.04)",border:`1px solid ${isOpen?"rgba(124,58,237,.3)":"rgba(255,255,255,.08)"}`,borderRadius:16,overflow:"hidden",transition:"all .2s"}}>
+                  <button onClick={()=>toggle(key)} style={{width:"100%",padding:"16px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,background:"none",border:"none",cursor:"pointer",textAlign:"left"}}>
+                    <span style={{fontSize:14,fontWeight:700,color:"#fff",lineHeight:1.4,flex:1}}>{item.q}</span>
+                    <span style={{fontSize:18,color:"#a78bfa",flexShrink:0,transition:"transform .2s",transform:isOpen?"rotate(45deg)":"rotate(0deg)"}}>+</span>
+                  </button>
+                  {isOpen&&(
+                    <div style={{padding:"0 18px 18px",animation:"fade-up .25s ease both"}}>
+                      <div style={{height:1,background:"rgba(255,255,255,.07)",marginBottom:14}}/>
+                      <p style={{fontSize:14,color:"var(--txt2)",lineHeight:1.75}}>{item.a}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {ci===1&&<AdR style={{marginTop:16}}/>}
+        </div>
+      ))}
+
+      {/* Still have questions CTA */}
+      <div style={{background:"linear-gradient(135deg,rgba(124,58,237,.12),rgba(59,130,246,.08))",border:"1px solid rgba(124,58,237,.22)",borderRadius:20,padding:"24px 22px",textAlign:"center",marginBottom:8}}>
+        <div style={{fontSize:28,marginBottom:10}}>🤔</div>
+        <h3 style={{fontWeight:800,fontSize:18,marginBottom:8}}>Still have questions?</h3>
+        <p style={{color:"var(--txt2)",fontSize:14,marginBottom:18,lineHeight:1.65}}>Can't find the answer you're looking for? Our team is happy to help.</p>
+        <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+          <button className="btn-grad" onClick={()=>go(R.CONTACT)} style={{borderRadius:50,padding:"12px 24px"}}>✉️ Contact Us</button>
+          <button className="btn-outline" onClick={()=>go(R.ALL)} style={{borderRadius:50,padding:"12px 24px"}}>🚀 Try Tools Free</button>
+        </div>
+      </div>
+
+      <AdR/>
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════
+   BLOG DATA & PAGES
+══════════════════════════════════════════════════════ */
+const BLOG_POSTS = [
+  {
+    id:"how-to-write-viral-youtube-titles",
+    tag:"YouTube Growth",tagColor:"#fca5a5",tagBg:"rgba(239,68,68,.12)",
+    emoji:"🔥",
+    title:"How to Write Viral YouTube Titles That Get More Clicks",
+    excerpt:"Your title is the first thing viewers see. Learn the proven formula behind titles that get 10%+ CTR and why most creators are doing it wrong.",
+    date:"March 15, 2025",readTime:"6 min read",
+    content:[
+      {type:"intro",text:"Your YouTube title is responsible for roughly 70% of whether someone clicks on your video. Yet most creators spend 5 minutes on it after spending hours filming and editing. This guide changes that."},
+      {type:"h2",text:"Why Most YouTube Titles Fail"},
+      {type:"p",text:"The biggest mistake creators make is writing titles that describe what the video is about instead of why the viewer should care. 'My Morning Routine' is a description. 'I Woke Up at 5AM Every Day for 30 Days — Here's What Changed' is a reason to click."},
+      {type:"h2",text:"The Viral Title Formula"},
+      {type:"p",text:"After analysing over 10,000 viral videos, a clear pattern emerges. The best titles combine: (1) a number or specific timeframe, (2) a power word that triggers emotion, (3) a curiosity gap that promises a payoff, and (4) a personal element that makes it relatable."},
+      {type:"tip",text:"💡 Pro Tip: Use our free YouTube Title Score Checker to get an instant CTR score for your title with specific improvement suggestions."},
+      {type:"h2",text:"The 5 Title Frameworks That Work in 2025"},
+      {type:"list",items:["The Challenge Format: 'I Did X For 30 Days — Here's What Happened'","The Mistake Format: 'Stop Making These X Mistakes (Fix This Now)'","The Secret Format: 'The Proven Truth About X Nobody Talks About'","The Number Format: '7 X Hacks That Actually Work'","The Story Format: 'How I Went From X to Y With Z'"]},
+      {type:"h2",text:"Power Words That Boost CTR"},
+      {type:"p",text:"Certain words consistently trigger higher click-through rates. Words like 'Secret', 'Proven', 'Viral', 'Shocking', 'Ultimate', 'Insane', and 'Hidden' activate curiosity and urgency. But use them strategically — one power word per title is usually enough."},
+      {type:"h2",text:"Title Length: The Sweet Spot"},
+      {type:"p",text:"YouTube displays approximately 60 characters of a title in search results and 70 on mobile. The ideal title length is 40–60 characters. Too short and you lose the hook. Too long and it gets cut off at a critical moment."},
+      {type:"tip",text:"🎯 Use Virlofy's free Title Generator to instantly create 10 viral title variations for any video topic — all following these proven frameworks."},
+      {type:"h2",text:"Testing Your Titles"},
+      {type:"p",text:"YouTube Studio's A/B testing feature (available to channels with 1000+ subscribers) lets you test two titles and see which performs better. Always test your titles. Even small changes — adding a number, swapping a word — can increase CTR by 20–40%."},
+      {type:"conclusion",text:"Writing great YouTube titles is a skill that compounds over time. Start applying these frameworks today, use tools like our Title Generator and Score Checker, and watch your click-through rate transform."},
+    ]
+  },
+  {
+    id:"instagram-hashtag-strategy-2025",
+    tag:"Instagram Growth",tagColor:"#f9a8d4",tagBg:"rgba(236,72,153,.12)",
+    emoji:"#️⃣",
+    title:"The Complete Instagram Hashtag Strategy for 2025",
+    excerpt:"Instagram's algorithm changed — here's exactly how many hashtags to use, which types to mix, and the 3-tier strategy that top creators swear by.",
+    date:"March 10, 2025",readTime:"7 min read",
+    content:[
+      {type:"intro",text:"Instagram hashtags have changed dramatically. What worked in 2020 — stuffing 30 hashtags — now hurts your reach. Here's the updated strategy that's working right now."},
+      {type:"h2",text:"How Instagram Hashtags Work in 2025"},
+      {type:"p",text:"Instagram's algorithm now uses hashtags primarily to understand content context, not just to distribute it. This means quality and relevance matter far more than quantity. Instagram themselves recommend using 3–5 highly relevant hashtags per post."},
+      {type:"h2",text:"The 3-Tier Hashtag Strategy"},
+      {type:"p",text:"The most effective approach mixes hashtags from three performance tiers. This gives your content a chance to rank in smaller categories while also being seen in larger, high-traffic ones."},
+      {type:"list",items:["🔥 High Reach (1M+ posts): Broad hashtags like #fitness or #travel. Hard to rank but high discovery potential.","⚡ Medium Growth (100K–1M posts): Niche-specific tags where you have a realistic chance to appear on the top posts page.","🎯 Low Competition (Under 100K posts): Highly specific tags where you can rank easily and build authority."]},
+      {type:"tip",text:"💡 Use our free Hashtag Performance System to get pre-categorised hashtags across all three tiers for any topic — copy them all with one click."},
+      {type:"h2",text:"How Many Hashtags Should You Use?"},
+      {type:"p",text:"The data suggests 5–10 well-chosen hashtags outperform 30 random ones every time. For Reels specifically, 3–8 hashtags placed in the caption (not the comments) performs best. For static posts and carousels, 8–15 strategically chosen tags is the sweet spot."},
+      {type:"h2",text:"Hashtag Placement: Caption vs Comments"},
+      {type:"p",text:"Instagram confirmed in 2021 that hashtags in comments are treated the same as hashtags in captions for reach purposes. However, for aesthetics and engagement, many creators prefer putting hashtags at the end of the caption or in the first comment."},
+      {type:"h2",text:"Building Your Hashtag Library"},
+      {type:"p",text:"Successful creators don't pick random hashtags every post. They build a library of 50–100 tested hashtags across their niche, organised by post type and performance tier. Rotate between sets to avoid being flagged as spam by the algorithm."},
+      {type:"conclusion",text:"Stop guessing with hashtags. Use the 3-tier strategy, keep it relevant, and use our free Hashtag Generator to build your library in seconds."},
+    ]
+  },
+  {
+    id:"how-to-grow-youtube-channel-2025",
+    tag:"YouTube Growth",tagColor:"#fca5a5",tagBg:"rgba(239,68,68,.12)",
+    emoji:"🚀",
+    title:"How to Grow a YouTube Channel From 0 to 10K Subscribers in 2025",
+    excerpt:"The YouTube algorithm is more creator-friendly than ever. Here's the complete roadmap to your first 10,000 subscribers using strategies that work right now.",
+    date:"March 5, 2025",readTime:"9 min read",
+    content:[
+      {type:"intro",text:"Growing a YouTube channel in 2025 is both harder and easier than it's ever been. More competition, yes — but also more tools, better analytics, and an algorithm that actively rewards quality content over quantity."},
+      {type:"h2",text:"The Foundation: Niche Down to Grow Up"},
+      {type:"p",text:"The biggest mistake new channels make is being too broad. 'Tech channel' won't work. 'Budget smartphone reviews for students under $300' will. The more specific your niche, the more loyal your early audience will be, and the easier it is for YouTube to understand who to show your videos to."},
+      {type:"h2",text:"The 3 Pillars of YouTube Growth"},
+      {type:"list",items:["Click-Through Rate (CTR): Getting people to click your thumbnail. Target 4–10% for an established channel.","Watch Time & Retention: Keeping people watching. If you lose 70% of viewers in the first 30 seconds, no algorithm will save you.","Engagement Rate: Likes, comments, and shares signal to YouTube that your content creates conversation."]},
+      {type:"tip",text:"🎯 Use Virlofy's free Hook Generator to craft opening lines that keep viewers watching past the critical 30-second mark."},
+      {type:"h2",text:"Posting Consistency: Quality Over Quantity"},
+      {type:"p",text:"YouTube rewards consistency, not frequency. One highly optimised video per week consistently outperforms three rushed videos. Pick a schedule you can maintain for 6 months — that's the real test of a serious creator."},
+      {type:"h2",text:"SEO: How to Get Found on YouTube Search"},
+      {type:"p",text:"YouTube is the world's second-largest search engine. Use our Tags Generator to find the right keywords, write descriptions that naturally use your target keywords in the first 150 characters, and create custom thumbnails for every single video."},
+      {type:"h2",text:"The Community Growth Loop"},
+      {type:"p",text:"Reply to every comment in your first month. Ask a question at the end of every video. Create content that responds to comments and questions your audience actually has. YouTube's algorithm measures comment-to-view ratio — active communities get distributed more."},
+      {type:"h2",text:"Analytics: The Metrics That Actually Matter"},
+      {type:"list",items:["Impressions CTR: Below 2% means your thumbnail or title needs work.","Average View Duration: Aim for 40–60% retention.","Subscriber Conversion Rate: How many viewers subscribe after watching.","Traffic Source: Understanding where your views come from helps you double down on what works."]},
+      {type:"conclusion",text:"0 to 10K is a grind, but it's completely achievable with the right strategy. Use Virlofy's free tools to nail your titles, hooks, and content ideas — and post consistently for 6 months. The results will come."},
+    ]
+  },
+  {
+    id:"viral-instagram-reels-guide",
+    tag:"Instagram Growth",tagColor:"#f9a8d4",tagBg:"rgba(236,72,153,.12)",
+    emoji:"🎬",
+    title:"How to Make Instagram Reels That Go Viral: The Complete 2025 Guide",
+    excerpt:"Reels are Instagram's most powerful growth tool. Here's the exact framework behind viral Reels — from the first 3 seconds to the caption that drives shares.",
+    date:"February 28, 2025",readTime:"8 min read",
+    content:[
+      {type:"intro",text:"Instagram Reels reach non-followers better than any other content format on the platform. If you're not using Reels in 2025, you're leaving enormous growth on the table. Here's how to make them go viral."},
+      {type:"h2",text:"The First 3 Seconds Are Everything"},
+      {type:"p",text:"Instagram decides whether to push your Reel within the first 3 seconds based on how many people stop scrolling. This means your hook — the very first frame and first spoken or written words — determines everything that follows."},
+      {type:"tip",text:"🎬 Use Virlofy's free Reel Hook Generator to create 7 scroll-stopping opening lines for any Reel topic — crafted to stop thumbs instantly."},
+      {type:"h2",text:"The 4 Types of Viral Reels"},
+      {type:"list",items:["Educational: 'The 3 things nobody tells you about X' — high save rate drives distribution.","Transformation: Before/after content with a clear, dramatic change — highly shareable.","Relatable: POV and 'tell me without telling me' formats — massive comment engagement.","Controversial/Opinion: Polarising takes that spark debate — comments and shares explode."]},
+      {type:"h2",text:"Audio Strategy for Maximum Reach"},
+      {type:"p",text:"Using trending audio gives your Reel a boost in the algorithm because Instagram actively promotes its trending sounds. But original audio builds brand identity. The best strategy: use trending audio for discovery Reels and original audio for community-building Reels."},
+      {type:"h2",text:"Captions That Drive Shares and Saves"},
+      {type:"p",text:"Your Reel caption should either expand on the video, provide a cliff-hanger that makes viewers watch again, or ask a question that invites debate. Avoid generic captions like 'New video out!' Use our Caption Generator to craft captions that actually drive engagement."},
+      {type:"h2",text:"The Posting Time Myth"},
+      {type:"p",text:"Most 'best time to post' advice is recycled nonsense. Your best time to post is whenever YOUR audience is most active — found in your Instagram Insights. Generally, mornings (7–9am) and evenings (6–9pm) in your target audience's timezone perform well."},
+      {type:"h2",text:"Consistency: The Real Secret to Going Viral"},
+      {type:"p",text:"Accounts that post 3–5 Reels per week consistently outgrow accounts that post daily for two weeks and then disappear. Viral moments are cumulative — the more content you have, the more chances you have to hit."},
+      {type:"conclusion",text:"Going viral isn't luck — it's strategy, consistency, and execution. Master your hook, pick the right format, caption it properly, and post consistently. Use Virlofy's free tools to speed up every step of the process."},
+    ]
+  },
+  {
+    id:"content-creator-tools-free",
+    tag:"Creator Tips",tagColor:"#fde68a",tagBg:"rgba(251,191,36,.12)",
+    emoji:"🛠️",
+    title:"10 Free Tools Every Content Creator Needs in 2025",
+    excerpt:"You don't need to spend thousands on content creation tools. Here are 10 completely free tools — including Virlofy — that will supercharge your content strategy.",
+    date:"February 20, 2025",readTime:"5 min read",
+    content:[
+      {type:"intro",text:"The best creators aren't always the most talented — they're often just the most efficient. And efficiency in 2025 means using the right free tools. Here are the 10 you actually need."},
+      {type:"h2",text:"1. Virlofy.ai — Free AI Creator Toolkit"},
+      {type:"p",text:"Virlofy.ai is your all-in-one free creator tool platform. Generate viral YouTube titles, Instagram captions, hashtag sets, video hooks, script outlines, content ideas, and a 7-day content plan — all with zero cost and no login required. It's the first tool every creator should bookmark."},
+      {type:"h2",text:"2. Canva — Free Graphic Design"},
+      {type:"p",text:"Canva's free tier gives you access to thousands of templates for thumbnails, Instagram posts, carousels, and Stories. The drag-and-drop interface means you can create professional-looking graphics in minutes."},
+      {type:"h2",text:"3. CapCut — Free Video Editing"},
+      {type:"p",text:"CapCut is the go-to free video editor for Reels and TikTok content. Auto-captions, trending transitions, and one-tap background removal make it incredibly powerful for mobile-first creators."},
+      {type:"h2",text:"4. Google Trends — Free Trend Research"},
+      {type:"p",text:"Google Trends shows you what topics are trending in real-time and how search interest has changed over time. It's invaluable for finding content ideas before they peak."},
+      {type:"tip",text:"💡 Combine Google Trends research with Virlofy's Video Idea Generator to create trend-timed content that rides the algorithm wave."},
+      {type:"h2",text:"5. TubeBuddy (Free Tier) — YouTube SEO"},
+      {type:"p",text:"TubeBuddy's free tier includes keyword research, tag suggestions, and basic A/B testing. Essential for understanding what keywords your target audience searches for on YouTube."},
+      {type:"h2",text:"6. Notion — Free Content Calendar"},
+      {type:"p",text:"Notion is a free all-in-one workspace for organising your content calendar, drafting scripts, saving ideas, and tracking analytics. Their free tier is more than enough for most creators."},
+      {type:"h2",text:"7. Unsplash / Pexels — Free Stock Media"},
+      {type:"p",text:"Both platforms offer thousands of high-quality, royalty-free photos and videos you can use commercially. Perfect for B-roll footage and thumbnail backgrounds."},
+      {type:"h2",text:"8. Metricool (Free Tier) — Analytics"},
+      {type:"p",text:"Metricool's free tier lets you track analytics across YouTube, Instagram, and other platforms in one dashboard. Understanding your data is how you grow intentionally rather than by accident."},
+      {type:"h2",text:"9. Audacity — Free Audio Editing"},
+      {type:"p",text:"For YouTube creators, audio quality matters more than video quality. Audacity is a free, professional-grade audio editor that removes background noise and enhances your voice recordings."},
+      {type:"h2",text:"10. ChatGPT (Free Tier) — AI Writing Assistant"},
+      {type:"p",text:"OpenAI's free tier is useful for brainstorming, drafting scripts, and generating content ideas. Combine it with Virlofy's specialised creator tools for the best results."},
+      {type:"conclusion",text:"The best time to start using these tools was yesterday. The second best time is right now. Bookmark Virlofy.ai and start generating your viral titles, captions, and content plans for free today."},
+    ]
+  },
+  {
+    id:"youtube-seo-guide-2025",
+    tag:"YouTube Growth",tagColor:"#fca5a5",tagBg:"rgba(239,68,68,.12)",
+    emoji:"🎯",
+    title:"YouTube SEO in 2025: How to Rank Your Videos on the First Page",
+    excerpt:"YouTube search is responsible for 30–40% of channel views for most creators. Here's the complete SEO guide to ranking your videos where viewers can actually find them.",
+    date:"February 15, 2025",readTime:"8 min read",
+    content:[
+      {type:"intro",text:"YouTube SEO is one of the most underutilised growth levers for creators. While everyone is chasing trending audio and viral hooks, there's an enormous amount of views available for creators who understand how YouTube's search algorithm works."},
+      {type:"h2",text:"How YouTube's Search Algorithm Works"},
+      {type:"p",text:"YouTube ranks videos based on three primary factors: relevance (does the video match the search query?), engagement (do people watch, like, and comment?), and quality signals (watch time, subscriber growth, channel authority). Optimising for all three is the key to sustained search visibility."},
+      {type:"h2",text:"Keyword Research for YouTube"},
+      {type:"p",text:"Start with YouTube's autocomplete — type your topic and see what YouTube suggests. These are real searches real people are making. Use our Tags Generator to build a comprehensive keyword list, and look for terms with high search volume but lower competition."},
+      {type:"tip",text:"🏷️ Use Virlofy's free Tags Generator to create 13 SEO-optimised tags for any video topic — mixing broad, specific, and long-tail keywords."},
+      {type:"h2",text:"Optimising Your Video Title for Search"},
+      {type:"p",text:"Your primary keyword should appear in the first 3–5 words of your title when possible. However, don't sacrifice virality for SEO — a boring keyword-stuffed title gets lower CTR, which signals poor quality to the algorithm. Use Virlofy's Title Generator to create titles that balance both."},
+      {type:"h2",text:"Writing YouTube Descriptions That Rank"},
+      {type:"p",text:"The first 150 characters of your description appear in search results — make them count. Include your primary keyword naturally in the opening sentence. Then write a 200–300 word description covering what the video is about, who it's for, and key takeaways. Add timestamps for longer videos."},
+      {type:"h2",text:"Tags: Still Relevant in 2025?"},
+      {type:"p",text:"Yes, tags still matter — but less as a ranking factor and more as a way to associate your video with related content. Use your primary keyword as the first tag, then add variations and related terms. Aim for 10–15 tags per video."},
+      {type:"h2",text:"The Role of Thumbnail in SEO"},
+      {type:"p",text:"While thumbnails don't directly affect search ranking, they heavily affect CTR — which does affect ranking. A compelling thumbnail that matches search intent can double your click-through rate and dramatically improve your search position over time."},
+      {type:"conclusion",text:"YouTube SEO is a long game, but one that pays compounding dividends. Optimise every video title, description, and tags from day one, and you'll build a library of search-optimised content that generates views for years."},
+    ]
+  },
+];
+
+function BlogListPage({go,setTool,setBlogPost}){
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:720,margin:"0 auto"}}>
+      {/* Header */}
+      <div className="fu" style={{textAlign:"center",marginBottom:36}}>
+        <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(124,58,237,.1)",border:"1px solid rgba(124,58,237,.25)",borderRadius:999,padding:"7px 18px",fontSize:12,fontWeight:700,color:"#a78bfa",marginBottom:16}}>
+          📝 Creator Tips & Guides
+        </div>
+        <h1 style={{fontSize:"clamp(26px,6vw,42px)",fontWeight:900,letterSpacing:"-.02em",lineHeight:1.1,marginBottom:10}}>
+          The <span className="g-text">Virlofy Blog</span>
+        </h1>
+        <p style={{color:"var(--txt2)",fontSize:15,lineHeight:1.7,maxWidth:480,margin:"0 auto"}}>
+          Free guides, strategies and tips to help you grow faster on YouTube and Instagram.
+        </p>
+      </div>
+
+      <AdB/>
+
+      {/* Featured post */}
+      <div onClick={()=>{setBlogPost(BLOG_POSTS[0]);go(R.BLOGPOST);}} style={{background:"linear-gradient(135deg,rgba(124,58,237,.1),rgba(59,130,246,.07))",border:"1px solid rgba(124,58,237,.25)",borderRadius:22,padding:"24px",cursor:"pointer",marginBottom:16,transition:"all .2s"}}
+        onMouseEnter={e=>e.currentTarget.style.borderColor="rgba(124,58,237,.5)"}
+        onMouseLeave={e=>e.currentTarget.style.borderColor="rgba(124,58,237,.25)"}>
+        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}>
+          <span style={{fontSize:9,fontWeight:800,letterSpacing:".1em",textTransform:"uppercase",padding:"4px 10px",borderRadius:999,background:BLOG_POSTS[0].tagBg,color:BLOG_POSTS[0].tagColor}}>⭐ Featured</span>
+          <span style={{fontSize:9,fontWeight:700,letterSpacing:".07em",textTransform:"uppercase",padding:"4px 10px",borderRadius:999,background:BLOG_POSTS[0].tagBg,color:BLOG_POSTS[0].tagColor}}>{BLOG_POSTS[0].tag}</span>
+        </div>
+        <div style={{fontSize:32,marginBottom:12}}>{BLOG_POSTS[0].emoji}</div>
+        <h2 style={{fontSize:"clamp(18px,4vw,24px)",fontWeight:800,lineHeight:1.25,letterSpacing:"-.01em",marginBottom:10}}>{BLOG_POSTS[0].title}</h2>
+        <p style={{fontSize:14,color:"var(--txt2)",lineHeight:1.65,marginBottom:14}}>{BLOG_POSTS[0].excerpt}</p>
+        <div style={{display:"flex",alignItems:"center",gap:12}}>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>{BLOG_POSTS[0].date}</span>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>·</span>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>{BLOG_POSTS[0].readTime}</span>
+          <span style={{marginLeft:"auto",fontSize:13,fontWeight:700,color:"#a78bfa"}}>Read article →</span>
+        </div>
+      </div>
+
+      {/* Post grid */}
+      <div style={{display:"grid",gap:12,gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))"}}>
+        {BLOG_POSTS.slice(1).map((post,i)=>(
+          <div key={post.id} onClick={()=>{setBlogPost(post);go(R.BLOGPOST);}}
+            style={{background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:18,padding:"20px",cursor:"pointer",transition:"all .22s",animation:`fade-up .45s ease ${i*55}ms both`}}
+            onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(124,58,237,.3)";e.currentTarget.style.transform="translateY(-2px)";}}
+            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,.08)";e.currentTarget.style.transform="translateY(0)";}}>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+              <span style={{fontSize:9,fontWeight:700,letterSpacing:".07em",textTransform:"uppercase",padding:"4px 10px",borderRadius:999,background:post.tagBg,color:post.tagColor}}>{post.tag}</span>
+              <span style={{fontSize:22}}>{post.emoji}</span>
+            </div>
+            <h3 style={{fontSize:15,fontWeight:700,lineHeight:1.35,letterSpacing:"-.01em",marginBottom:8}}>{post.title}</h3>
+            <p style={{fontSize:13,color:"var(--txt2)",lineHeight:1.6,marginBottom:12}}>{post.excerpt}</p>
+            <div style={{display:"flex",alignItems:"center",gap:8}}>
+              <span style={{fontSize:11,color:"var(--txt3)"}}>{post.date}</span>
+              <span style={{fontSize:11,color:"var(--txt3)"}}>·</span>
+              <span style={{fontSize:11,color:"var(--txt3)"}}>{post.readTime}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <AdR style={{marginTop:16}}/>
+
+      {/* CTA */}
+      <div style={{background:"linear-gradient(135deg,rgba(124,58,237,.12),rgba(59,130,246,.08))",border:"1px solid rgba(124,58,237,.22)",borderRadius:20,padding:"22px",textAlign:"center",marginTop:8}}>
+        <h3 style={{fontWeight:800,fontSize:17,marginBottom:8}}>Put These Tips Into Action 🚀</h3>
+        <p style={{color:"var(--txt2)",fontSize:14,marginBottom:16,lineHeight:1.6}}>Use Virlofy's free tools to implement every strategy from our guides instantly.</p>
+        <button className="btn-grad" onClick={()=>go(R.ALL)} style={{borderRadius:50,padding:"13px 28px"}}>Try All Tools Free →</button>
+      </div>
+
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+function BlogPostPage({post,go,setTool}){
+  if(!post)return null;
+  const {copied,copy}=useCopy();
+  const {toasts,show}=useToast();
+  const shareUrl=`https://virlofy.ai/blog/${post.id}`;
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:680,margin:"0 auto"}}>
+      <Toast toasts={toasts}/>
+      {/* Back */}
+      <button className="btn-outline" onClick={()=>go(R.BLOG)} style={{marginBottom:22,padding:"9px 16px",fontSize:13,borderRadius:50}}>← Back to Blog</button>
+
+      {/* Header */}
+      <div style={{marginBottom:28}}>
+        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}>
+          <span style={{fontSize:9,fontWeight:700,letterSpacing:".07em",textTransform:"uppercase",padding:"5px 12px",borderRadius:999,background:post.tagBg,color:post.tagColor}}>{post.tag}</span>
+        </div>
+        <div style={{fontSize:40,marginBottom:14}}>{post.emoji}</div>
+        <h1 style={{fontSize:"clamp(22px,5vw,36px)",fontWeight:900,lineHeight:1.15,letterSpacing:"-.02em",marginBottom:14}}>{post.title}</h1>
+        <div style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
+          <div style={{display:"flex",alignItems:"center",gap:7}}>
+            <div style={{width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#7c3aed,#3b82f6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:800,color:"#fff"}}>V</div>
+            <span style={{fontSize:13,fontWeight:600,color:"var(--txt2)"}}>Virlofy Team</span>
+          </div>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>·</span>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>{post.date}</span>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>·</span>
+          <span style={{fontSize:12,color:"var(--txt3)"}}>{post.readTime}</span>
+          <button className={`btn-copy${copied==="url"?" done":""}`} onClick={()=>{copy(shareUrl,"url");show("Link copied!");}} style={{marginLeft:"auto",fontSize:11}}>
+            {copied==="url"?"✓ Copied":"🔗 Share"}
+          </button>
+        </div>
+      </div>
+
+      <AdB/>
+
+      {/* Content */}
+      <div style={{display:"flex",flexDirection:"column",gap:16}}>
+        {post.content.map((block,i)=>{
+          if(block.type==="intro") return <p key={i} style={{fontSize:17,fontWeight:500,color:"rgba(255,255,255,.8)",lineHeight:1.8,padding:"18px 20px",background:"rgba(124,58,237,.07)",border:"1px solid rgba(124,58,237,.2)",borderRadius:14}}>{block.text}</p>;
+          if(block.type==="h2")   return <h2 key={i} style={{fontSize:"clamp(18px,4vw,22px)",fontWeight:800,letterSpacing:"-.01em",marginTop:8,paddingTop:8}}>{block.text}</h2>;
+          if(block.type==="p")    return <p key={i} style={{fontSize:15,color:"var(--txt2)",lineHeight:1.8}}>{block.text}</p>;
+          if(block.type==="tip")  return <div key={i} style={{padding:"14px 18px",background:"rgba(59,130,246,.08)",border:"1px solid rgba(59,130,246,.22)",borderRadius:14,fontSize:14,color:"#93c5fd",lineHeight:1.7}}>{block.text}</div>;
+          if(block.type==="conclusion") return <div key={i} style={{padding:"18px 20px",background:"linear-gradient(135deg,rgba(124,58,237,.1),rgba(59,130,246,.07))",border:"1px solid rgba(124,58,237,.22)",borderRadius:16,fontSize:15,color:"rgba(255,255,255,.85)",lineHeight:1.75,fontWeight:500,marginTop:8}}><strong>Conclusion: </strong>{block.text}</div>;
+          if(block.type==="list") return(
+            <ul key={i} style={{paddingLeft:6,display:"flex",flexDirection:"column",gap:10}}>
+              {block.items.map((item,j)=>(
+                <li key={j} style={{fontSize:14,color:"var(--txt2)",lineHeight:1.7,display:"flex",gap:10,alignItems:"flex-start",listStyle:"none"}}>
+                  <span style={{color:"#a78bfa",flexShrink:0,marginTop:2}}>→</span>{item}
+                </li>
+              ))}
+            </ul>
+          );
+          return null;
+        })}
+      </div>
+
+      <AdR style={{marginTop:24}}/>
+
+      {/* CTA */}
+      <div style={{background:"linear-gradient(135deg,rgba(124,58,237,.12),rgba(59,130,246,.08))",border:"1px solid rgba(124,58,237,.22)",borderRadius:20,padding:"22px",textAlign:"center",marginTop:8,marginBottom:28}}>
+        <h3 style={{fontWeight:800,fontSize:17,marginBottom:8}}>Try These Strategies Now 🚀</h3>
+        <p style={{color:"var(--txt2)",fontSize:14,marginBottom:16,lineHeight:1.6}}>Use Virlofy's free AI tools to apply everything in this article instantly.</p>
+        <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+          <button className="btn-grad" onClick={()=>go(R.ALL)} style={{borderRadius:50,padding:"12px 24px"}}>Try All Tools Free</button>
+          <button className="btn-outline" onClick={()=>go(R.BLOG)} style={{borderRadius:50,padding:"12px 24px"}}>← More Articles</button>
+        </div>
+      </div>
+
+      {/* Related posts */}
+      <h3 style={{fontWeight:800,fontSize:17,marginBottom:14}}>More Articles</h3>
+      <div style={{display:"flex",flexDirection:"column",gap:10}}>
+        {BLOG_POSTS.filter(p=>p.id!==post.id).slice(0,3).map((p,i)=>(
+          <div key={p.id} onClick={()=>{setBlogPost(p);window.scrollTo({top:0,behavior:"smooth"});}}
+            style={{background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:14,padding:"14px 16px",cursor:"pointer",display:"flex",alignItems:"center",gap:14,transition:"all .2s"}}
+            onMouseEnter={e=>e.currentTarget.style.borderColor="rgba(124,58,237,.3)"}
+            onMouseLeave={e=>e.currentTarget.style.borderColor="rgba(255,255,255,.08)"}>
+            <span style={{fontSize:24,flexShrink:0}}>{p.emoji}</span>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontSize:13,fontWeight:700,lineHeight:1.35,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.title}</div>
+              <div style={{fontSize:11,color:"var(--txt3)",marginTop:3}}>{p.readTime}</div>
+            </div>
+            <span style={{color:"#a78bfa",fontSize:16,flexShrink:0}}>›</span>
+          </div>
+        ))}
+      </div>
+
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+/* ── App ── */
 function App(){
   const [route,setRoute]=useState(R.HOME);
   const [tool,setTool]=useState(null);
+  const [blogPost,setBlogPost]=useState(null);
   const go=useCallback(r=>{setRoute(r);window.scrollTo({top:0,behavior:"smooth"});},[]);
 
   const pages={
-    [R.HOME]:    <HomePage    go={go} setTool={setTool}/>,
-    [R.YT]:      <ToolListPage go={go} setTool={setTool} mode="yt"/>,
-    [R.IG]:      <ToolListPage go={go} setTool={setTool} mode="ig"/>,
-    [R.ALL]:     <ToolListPage go={go} setTool={setTool} mode="all"/>,
-    [R.TRENDING]:<TrendingPage go={go} setTool={setTool}/>,
-    [R.ABOUT]:   <AboutPage   go={go} setTool={setTool}/>,
-    [R.PRIVACY]: <LegalPage   go={go} setTool={setTool} type="privacy"/>,
-    [R.TERMS]:   <LegalPage   go={go} setTool={setTool} type="terms"/>,
-    [R.CONTACT]: <ContactPage go={go} setTool={setTool}/>,
-    [R.TOOL]:    <ToolPage    tool={tool} go={go} setTool={setTool}/>,
+    [R.HOME]:     <HomePage     go={go} setTool={setTool}/>,
+    [R.YT]:       <ToolListPage go={go} setTool={setTool} mode="yt"/>,
+    [R.IG]:       <ToolListPage go={go} setTool={setTool} mode="ig"/>,
+    [R.ALL]:      <ToolListPage go={go} setTool={setTool} mode="all"/>,
+    [R.TRENDING]: <TrendingPage go={go} setTool={setTool}/>,
+    [R.ABOUT]:    <AboutPage    go={go} setTool={setTool}/>,
+    [R.FAQ]:      <FAQPage      go={go} setTool={setTool}/>,
+    [R.BLOG]:     <BlogListPage go={go} setTool={setTool} setBlogPost={setBlogPost}/>,
+    [R.BLOGPOST]: <BlogPostPage post={blogPost} go={go} setTool={setTool} setBlogPost={setBlogPost}/>,
+    [R.PRIVACY]:  <LegalPage    go={go} setTool={setTool} type="privacy"/>,
+    [R.TERMS]:    <LegalPage    go={go} setTool={setTool} type="terms"/>,
+    [R.CONTACT]:  <ContactPage  go={go} setTool={setTool}/>,
+    [R.TOOL]:     <ToolPage     tool={tool} go={go} setTool={setTool}/>,
   };
 
   return(
