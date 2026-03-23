@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>Virlofy.ai — Free AI Creator Tools</title>
+<meta name="description" content="Free AI-powered tools for YouTube & Instagram creators. Viral titles, captions, hashtags, hooks & more — 100% free."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="dns-prefetch" href="//www.highperformanceformat.com"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-73DFQ9FTQ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-73DFQ9FTQ2');</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;
+  --bg2:#111118;
+  --card:#13131a;
+  --card2:#17171f;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --purple:#7c3aed;
+  --purple2:#9333ea;
+  --blue:#3b82f6;
+  --txt:#ffffff;
+  --txt2:rgba(255,255,255,0.55);
+  --txt3:rgba(255,255,255,0.35);
+  --grad:linear-gradient(135deg,#7c3aed,#3b82f6);
+  --grad2:linear-gradient(135deg,#8b5cf6,#6366f1);
+  --f:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--txt);font-family:var(--f);line-height:1.5;overflow-x:hidden;min-height:100vh;padding-bottom:80px;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:rgba(124,58,237,0.4);border-radius:2px}
+
+/* Gradient text */
+.g-text{background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.g-purple{background:linear-gradient(135deg,#8b5cf6,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Buttons */
+button{font-family:var(--f);cursor:pointer;-webkit-tap-highlight-color:transparent;border:none;outline:none}
+.btn-main{width:100%;padding:17px 24px;background:linear-gradient(135deg,#7c3aed,#6366f1,#3b82f6);color:#fff;font-size:17px;font-weight:700;border-radius:50px;letter-spacing:0.01em;transition:all .2s;box-shadow:0 8px 32px rgba(124,58,237,0.4);position:relative;overflow:hidden}
+.btn-main:active{transform:scale(0.98);box-shadow:0 4px 16px rgba(124,58,237,0.3)}
+.btn-grad{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;background:linear-gradient(135deg,#7c3aed,#3b82f6);color:#fff;font-size:14px;font-weight:700;border-radius:50px;transition:all .2s;box-shadow:0 4px 20px rgba(124,58,237,0.35)}
+.btn-grad:hover{opacity:.9;transform:translateY(-1px)}
+.btn-grad:active{transform:scale(.97)}
+.btn-grad:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;background:rgba(255,255,255,0.06);color:var(--txt2);font-size:14px;font-weight:600;border-radius:50px;border:1px solid var(--border2);transition:all .2s}
+.btn-outline:hover{background:rgba(255,255,255,0.1);color:var(--txt)}
+.btn-copy{background:rgba(124,58,237,0.15);color:#a78bfa;border:1px solid rgba(124,58,237,0.25);padding:7px 14px;font-size:12px;font-weight:700;border-radius:8px;transition:all .18s;white-space:nowrap}
+.btn-copy:hover{background:rgba(124,58,237,0.25)}
+.btn-copy.done{background:rgba(16,185,129,0.15);color:#6ee7b7;border-color:rgba(16,185,129,0.3)}
+.btn-example{background:rgba(59,130,246,0.12);color:#93c5fd;border:1px solid rgba(59,130,246,0.22);padding:7px 14px;font-size:12px;font-weight:600;border-radius:8px;transition:all .18s}
+.btn-example:hover{background:rgba(59,130,246,0.22)}
+
+/* Inputs */
+input,textarea,select{width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;color:#fff;font-family:var(--f);font-size:15px;outline:none;transition:all .2s;-webkit-appearance:none}
+input:focus,textarea:focus,select:focus{border-color:rgba(124,58,237,0.6);background:rgba(124,58,237,0.07);box-shadow:0 0 0 3px rgba(124,58,237,0.12)}
+input::placeholder,textarea::placeholder{color:var(--txt3)}
+textarea{resize:vertical;min-height:90px;line-height:1.6}
+select option{background:#1a1025;color:#fff}
+label{display:block;font-size:12px;font-weight:700;color:rgba(167,139,250,0.9);margin-bottom:7px;text-transform:uppercase;letter-spacing:.09em}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;transition:all .22s;overflow:hidden}
+.card:hover{border-color:rgba(124,58,237,0.3);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.card:active{transform:scale(.98)}
+
+/* Tool grid cards */
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 16px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.tool-card::before{content:'';position:absolute;inset:0;background:var(--grad-card,linear-gradient(135deg,rgba(124,58,237,.06),transparent));opacity:0;transition:opacity .22s}
+.tool-card:hover::before{opacity:1}
+.tool-card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px)}
+.tool-card:active{transform:scale(.97)}
+.tool-icon-wrap{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+
+/* Advanced feature row */
+.feat-row{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:17px 18px;display:flex;align-items:center;gap:15px;cursor:pointer;transition:all .2s;margin-bottom:10px}
+.feat-row:hover{border-color:rgba(124,58,237,0.3);background:var(--card2)}
+.feat-row:active{transform:scale(.98)}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.feat-chevron{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:var(--txt3);font-size:13px;flex-shrink:0;margin-left:auto}
+
+/* Result cards */
+.result-card{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px;transition:all .2s;display:flex;align-items:flex-start;gap:12px;margin-bottom:9px}
+.result-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(124,58,237,0.25)}
+.rnum{width:26px;height:26px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#a78bfa;background:rgba(124,58,237,0.18);margin-top:1px}
+
+/* Animations */
+@keyframes fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slide-in{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toast-in{from{opacity:0;transform:translateY(20px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes orb{0%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}100%{transform:translate(0,0)}}
+@keyframes counter-pop{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes thinking{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+@keyframes bar-grow{from{width:0}to{width:var(--w)}}
+@keyframes modal-in{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes ring{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.4);opacity:0}}
+@keyframes slide-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes ad-in{from{opacity:0}to{opacity:1}}
+
+.fu{animation:fade-up .5s ease both}
+.d1{animation-delay:.06s}.d2{animation-delay:.12s}.d3{animation-delay:.18s}.d4{animation-delay:.24s}
+
+/* Spinner */
+.spinner{width:17px;height:17px;border:2.5px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0}
+.dot{width:8px;height:8px;background:#a78bfa;border-radius:50%;animation:thinking 1.2s ease infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(10,10,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-size:20px;font-weight:800;letter-spacing:-.01em;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-bell{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;transition:all .18s}
+.nav-bell:hover{background:rgba(255,255,255,.12)}
+.nav-ham{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .18s}
+.nav-ham:hover{background:rgba(255,255,255,.12)}
+.desk-nav{display:flex;gap:20px;align-items:center}
+@media(max-width:768px){.desk-nav{display:none}}
+@media(min-width:769px){.mob-only{display:none}}
+
+/* Mobile drawer */
+.drawer{position:fixed;inset:0;z-index:980;background:rgba(10,10,15,.97);backdrop-filter:blur(24px);padding:70px 20px 32px;overflow-y:auto;animation:fade-in .18s ease both}
+.dr-item{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;background:none;color:rgba(255,255,255,.6);font-size:17px;font-weight:500;cursor:pointer;text-align:left;transition:all .18s;margin-bottom:4px}
+.dr-item:hover,.dr-item.active{background:rgba(124,58,237,.14);color:#fff}
+.dr-item.active{color:#a78bfa}
+
+/* Live counter */
+.live-pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:10px 18px;font-size:14px;font-weight:600;color:rgba(255,255,255,.85)}
+.live-ring{position:relative;display:flex;align-items:center;justify-content:center;width:12px;height:12px;flex-shrink:0}
+.live-ring::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid #ef4444;animation:ring 1.6s ease-out infinite}
+.live-dot{width:12px;height:12px;background:#ef4444;border-radius:50%;position:relative;z-index:1}
+
+/* Section titles */
+.sec-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-.01em}
+.sec-sub{font-size:13px;color:var(--txt2);margin-bottom:16px}
+
+/* Trend chips */
+.trend-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.trend-scroll::-webkit-scrollbar{display:none}
+.trend-chip{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:9px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:50px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.trend-chip:hover,.trend-chip:active{background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.35);color:#fff}
+
+/* Tag chips */
+.tag{display:inline-flex;align-items:center;background:rgba(124,58,237,.14);border:1px solid rgba(124,58,237,.28);border-radius:50px;padding:5px 12px;font-size:12px;font-weight:600;color:#a78bfa}
+
+/* Ad */
+.ad-wrap{display:flex;flex-direction:column;align-items:center;margin:16px 0;animation:ad-in .5s ease both}
+.ad-label{font-size:9px;font-weight:700;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+.ad-box{background:rgba(0,0,0,.25);border-radius:14px;padding:10px;border:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* Bottom nav */
+.bot-nav{position:fixed;bottom:0;left:0;right:0;z-index:970;background:rgba(10,10,15,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-around;padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+@media(min-width:769px){.bot-nav{display:none}}
+.bot-btn{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;color:rgba(255,255,255,.4);font-size:11px;font-weight:600;padding:4px 14px;border-radius:12px;transition:all .18s;flex:1}
+.bot-btn .bi{font-size:22px;transition:all .18s}
+.bot-btn.active{color:#a78bfa}
+.bot-btn.active .bi{transform:scale(1.12)}
+
+/* Tool input area */
+.input-area{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:20px;padding:20px}
+
+/* Hint */
+.hint{display:flex;align-items:center;gap:8px;padding:9px 14px;background:rgba(59,130,246,.09);border:1px solid rgba(59,130,246,.2);border-radius:11px;font-size:12px;color:#93c5fd;margin-bottom:14px;flex-wrap:wrap;gap:6px}
+
+/* Error */
+.err{background:rgba(239,68,68,.09);border:1px solid rgba(239,68,68,.22);border-radius:10px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:10px}
+
+/* Sec header */
+.sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sec-bar{width:3px;height:20px;border-radius:2px;flex-shrink:0}
+
+/* Modal */
+.modal-over{position:fixed;inset:0;z-index:2000;background:rgba(5,5,12,.9);backdrop-filter:blur(12px);display:flex;align-items:flex-end;justify-content:center;padding:0;animation:fade-in .18s ease both}
+@media(min-width:600px){.modal-over{align-items:center;padding:16px}}
+.modal-box{background:#111118;border:1px solid rgba(255,255,255,.1);border-radius:24px 24px 0 0;width:100%;max-width:740px;max-height:92vh;overflow-y:auto;animation:slide-up .3s ease both}
+@media(min-width:600px){.modal-box{border-radius:24px;animation:modal-in .3s ease both}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px 0;position:sticky;top:0;background:rgba(17,17,24,.97);z-index:1;border-radius:24px 24px 0 0}
+.modal-body{padding:18px 22px 28px}
+.modal-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;flex-shrink:0}
+.modal-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.modal-handle{width:40px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:0 auto 16px}
+
+/* Score bar */
+.score-track{background:rgba(255,255,255,.08);border-radius:999px;height:9px;overflow:hidden}
+.score-fill{height:100%;border-radius:999px;animation:bar-grow 1s cubic-bezier(.34,1.56,.64,1) both}
+
+/* Cal day */
+.cal-day{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:15px}
+
+/* BA panels */
+.ba-b{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:16px;padding:16px;flex:1;min-width:0}
+.ba-a{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);border-radius:16px;padding:16px;flex:1;min-width:0}
+.ba-row{padding:10px 12px;border-radius:10px;margin-bottom:8px;font-size:13px;line-height:1.55}
+.ba-b .ba-row{background:rgba(239,68,68,.08);color:#fca5a5}
+.ba-a .ba-row{background:rgba(16,185,129,.08);color:#6ee7b7}
+
+/* HP */
+.hp-h{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.28);color:#fca5a5}
+.hp-m{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.28);color:#fde68a}
+.hp-l{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#6ee7b7}
+
+/* Legal */
+.legal h2{font-size:17px;font-weight:700;color:#fff;margin:26px 0 8px}
+.legal p,.legal li{color:var(--txt2);font-size:14px;line-height:1.75}
+.legal ul{padding-left:18px;margin:8px 0}
+.legal a{color:#a78bfa}
+
+/* PW highlight */
+.pw{color:#fde68a;font-weight:700}
+
+/* Page wrapper */
+.page{padding:78px 18px 24px;max-width:680px;margin:0 auto}
+.page-wide{padding:78px 18px 24px;max-width:1100px;margin:0 auto}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script type="text/babel">
+const {useState,useEffect,useRef,useCallback}=React;
+
+/* ── Routes ── */
+const R={HOME:"home",YT:"yt",IG:"ig",ALL:"all",ABOUT:"about",PRIVACY:"privacy",TERMS:"terms",CONTACT:"contact",TOOL:"tool",TRENDING:"trending"};
+
+/* ── Tool data ── */
+const CORE_TOOLS=[
+  {id:"yt-title",  icon:"⚡", iconBg:"linear-gradient(135deg,#7c3aed,#6366f1)", name:"Viral Titles",   desc:"Generate hooks & titles",           badge:"yt"},
+  {id:"yt-hook",   icon:"🔗", iconBg:"linear-gradient(135deg,#2563eb,#3b82f6)", name:"Hook Creator",  desc:"Stop the scroll instantly",          badge:"yt"},
+  {id:"ig-caption",icon:"📝", iconBg:"linear-gradient(135deg,#dc2626,#ec4899)", name:"Caption Maker", desc:"Engaging post copies",               badge:"ig"},
+  {id:"ig-hashtag",icon:"#",  iconBg:"linear-gradient(135deg,#059669,#10b981)", name:"Hashtags",      desc:"Discover trending tags",             badge:"ig", iconStyle:{fontFamily:"var(--f)",fontWeight:900,fontSize:22,color:"#fff"}},
+  {id:"yt-ideas",  icon:"💡", iconBg:"linear-gradient(135deg,#d97706,#f59e0b)", name:"Content Ideas", desc:"Never run out of ideas",             badge:"yt"},
+  {id:"yt-script", icon:"📄", iconBg:"linear-gradient(135deg,#0891b2,#06b6d4)", name:"Script Writer", desc:"Full video scripts",                  badge:"yt"},
+];
+const ADV_TOOLS=[
+  {id:"viral-planner",icon:"📅",iconBg:"linear-gradient(135deg,#4f46e5,#7c3aed)",name:"Viral Content Planner",desc:"Plan your 7-day content calendar",badge:"pro"},
+  {id:"title-score", icon:"📊",iconBg:"linear-gradient(135deg,#7c3aed,#a855f7)",name:"Title Score Checker",  desc:"Analyze virality and improve",      badge:"pro"},
+  {id:"before-after",icon:"⚖️",iconBg:"linear-gradient(135deg,#dc2626,#ec4899)",name:"Before vs After",     desc:"Compare bad and viral content",     badge:"pro"},
+  {id:"hashtag-perf",icon:"🔥",iconBg:"linear-gradient(135deg,#ea580c,#f59e0b)",name:"Hashtag Performance", desc:"High reach & niche analysis",       badge:"pro"},
+];
+const YT_TOOLS=[
+  {id:"yt-title",icon:"⚡",name:"Title Generator",     desc:"10 viral titles + thumbnails + hooks",badge:"yt",popular:true,example:"how to lose weight fast"},
+  {id:"yt-hook", icon:"🔗",name:"Hook Creator",        desc:"7 powerful first-5-second openers",  badge:"yt",example:"morning routine"},
+  {id:"yt-script",icon:"📄",name:"Script Writer",       desc:"Full video structure planner",       badge:"yt",example:"beginner investing tips"},
+  {id:"yt-ideas",icon:"💡",name:"Content Ideas",       desc:"10 viral ideas for your niche",      badge:"yt",example:"personal finance"},
+  {id:"yt-thumbnail",icon:"🖼️",name:"Thumbnail Text",  desc:"8 bold click-worthy texts",          badge:"yt",example:"productivity hacks"},
+  {id:"yt-tags", icon:"🏷️",name:"Tags Generator",     desc:"13 SEO-optimised YouTube tags",      badge:"yt",example:"cooking for beginners"},
+];
+const IG_TOOLS=[
+  {id:"ig-caption",icon:"📝",name:"Caption Maker",    desc:"5 scroll-stopping captions",         badge:"ig",popular:true,example:"gym workout session"},
+  {id:"ig-hashtag",icon:"#️⃣",name:"Hashtag Generator",desc:"3 performance-ranked hashtag sets", badge:"ig",example:"travel photography"},
+  {id:"ig-bio",   icon:"👤",name:"Bio Generator",     desc:"5 magnetic Instagram bios",          badge:"ig",example:"fitness coach for women"},
+  {id:"ig-reel",  icon:"🎬",name:"Reel Hook Creator", desc:"7 hooks that stop the scroll",       badge:"ig",example:"body transformation"},
+  {id:"ig-viral", icon:"🚀",name:"Viral Ideas",       desc:"7 data-driven content ideas",        badge:"ig",example:"self improvement"},
+];
+const TRENDING_TOPICS=[
+  {icon:"🤖",label:"AI Tools"},{icon:"💸",label:"Side Hustle"},{icon:"📈",label:"Instagram Growth"},
+  {icon:"▶️",label:"YouTube Automation"},{icon:"💰",label:"Online Earning"},{icon:"💪",label:"Fitness"},
+  {icon:"🧠",label:"Mindset"},{icon:"📱",label:"Social Media"},{icon:"🚀",label:"Productivity"},
+  {icon:"💻",label:"Tech Reviews"},{icon:"🎯",label:"Personal Finance"},{icon:"🌍",label:"Travel Vlogs"},
+];
+
+/* ── Generators ── */
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>[...a].sort(()=>Math.random()-.5);
+const YR=new Date().getFullYear();
+const PW=["Secret","Hidden","Proven","Shocking","Viral","Ultimate","Insane","Real","Fastest","Untold","Raw","Brutal","Game-Changing"];
+const NUMS=["3","5","7","10","12","15","21","30"];
+
+function hlPW(t){const ws=["secret","viral","proven","insane","shocking","free","ultimate","hidden","truth","exposed","mistake","game-changer","untold","brutal","raw","hack"];return ws.reduce((s,w)=>s.replace(new RegExp(`\\b${w}\\b`,"gi"),m=>`<span class="pw">${m}</span>`),t);}
+
+function genTitles(t,n){const s=n?` (${n})`:"";const pw=()=>pick(PW);const num=()=>pick(NUMS);
+  return shuffle([`${pw()} Truth About ${t}${s} Nobody Talks About`,`I Tried ${t} For 30 Days — Here's What ${pick(["Happened","Changed","Shocked Me"])}`,`The ${pw()} ${num()}-Step Guide to ${t} in ${YR}`,`Stop Making These ${t} Mistakes (${pw()} Fix Inside)`,`How I Went From 0 to 100K With ${t}${s}`,`${num()} ${pw()} ${t} Hacks That Actually Work`,`Why Your ${t} Strategy Is Failing (${pick(["Fix This NOW","Watch This","Real Talk"])})`,`I Exposed The ${t} Industry — ${pick(["Watch Before It's Gone","You Need To See This","This Is Insane"])}`,`${t}: What They Don't Want You To Know${s}`,`The Only ${t} Video You'll Ever Need in ${YR}`,`${num()} ${pw()} ${t} Tips That Changed My Life`,`From Zero to $10K/Month With ${t}${s}`,`I Spent $${pick(["500","1000","5000"])} on ${t} — Here's What I Learned`,`${num()} Things I Wish I Knew Before Starting ${t}`,`This ${t} Method Got Me ${pick(["1M","500K","100K"])} Views`,]).slice(0,10);}
+function genThumbs(t){return[{text:pick(["WAIT—","STOP!","NO WAY","INSANE"]),detail:`Split face reaction + bold text "${(t||"TOPIC").toUpperCase()}"`,tone:"Shock"},{text:"I WAS WRONG",detail:"Before/after layout, shocked expression",tone:"Curiosity"},{text:pick(["$0→$10K","0→1M","BROKE→RICH"]),detail:"Arrow graphic, bright contrast",tone:"Transformation"},{text:"THIS CHANGED EVERYTHING",detail:"Close-up face, blurred background",tone:"Emotion"},{text:pick(["SECRET","HIDDEN","EXPOSED"]),detail:"Dark moody palette, neon text",tone:"Intrigue"},];}
+function genHooks(t){return shuffle([`"You're wasting your time if you haven't tried ${t} — but not after this."`,`"I almost didn't make this video… but you deserve the truth about ${t}."`,`"What if everything you know about ${t} is completely wrong?"`,`"In 60 seconds I'll show you what took me 3 years to learn about ${t}."`,`"Stop. If you struggle with ${t}, this is the ONLY video you need."`,`"Most creators skip this one step with ${t} — it's costing them thousands."`,`"This ${t} method made me $0 for 6 months… until I changed one thing."`,`"Before I start — raise your hand if ${t} has ever frustrated you."`,`"I'm going to say something controversial about ${t}. You might not like it."`,`"What you'll learn about ${t} took me 2 years and $50K to figure out."`,]).slice(0,7);}
+function genScript(t){return{intro:[`Hook: "${pick(["Did you know","What if I said","Here's the brutal truth"])}" — state what viewers will gain in 10 seconds.`,`Open with a shocking stat or bold claim about ${t}.`,`Show a 5-second preview of the end result to build anticipation.`,`Pattern interrupt: start mid-action about ${t}.`,],main:[`Point 1 — The Problem: Why 90% fail at ${t} and the #1 mistake they don't know they're making.`,`Point 2 — The Method: Proven approach to ${t}. Show don't tell — use a real example.`,`Point 3 — The Results: Data, screenshots, before/after. Build credibility.`,`Point 4 — Quick Wins: 3 things viewers can implement TODAY.`,`Engagement moment: "Comment 'FIRE' if you want part 2 on ${t}."`,],outro:[`One-sentence takeaway about ${t}.`,`CTA: "Hit like — it takes 1 second and helps more creators see this."`,`Tease: "Next video I'll show you the advanced ${t} strategy."`,`Subscribe hook: "I post new ${t} tips every week."`,],};}
+function genIdeas(n){return shuffle([`I Tested Every ${n} Strategy — Full Results`,`The ${n} Blueprint: How I'd Start From Zero in ${YR}`,`Reacting to the WORST ${n} Advice on the Internet`,`${pick(PW)} ${n} Tools Nobody Is Talking About`,`I Interviewed ${pick(["10","50","100"])} Top ${n} Creators`,`${n} Myths Vs Reality`,`Honest Day in the Life of a ${n} Creator`,`${n} Tier List: S to F`,`$0 vs $5000 ${n} Setup`,`The ${n} Video That Got Me ${pick(["1M","500K","100K"])} Views`,`What ${pick(["1","2","3"])} Year in ${n} Taught Me`,`The Dark Side of ${n} Nobody Shows You`,]).slice(0,10);}
+function genThumbTexts(t){const u=(t||"topic").toUpperCase();return shuffle([`${pick(PW).toUpperCase()} ${u}`,`I WAS WRONG ABOUT ${u}`,`${u} EXPOSED`,`THIS CHANGED EVERYTHING`,`STOP DOING THIS`,`THE TRUTH ABOUT ${u}`,`GAME CHANGER`,`NOBODY TELLS YOU THIS`,]).slice(0,8);}
+function genTags(t,n){return shuffle([t,`${t} tips`,`${t} tutorial`,`${t} ${YR}`,`how to ${t}`,`${t} for beginners`,`best ${t}`,`${n||"creator"} ${t}`,`${t} guide`,`${t} strategy`,`${t} hacks`,`${t} mistakes`,`${n||"creator"} tips`,]).slice(0,13);}
+function genCaptions(t,n){return shuffle([`✨ ${pick(["Real talk:","Hot take:","Story time:"])} ${t} is what everyone talks about but nobody does right. Drop a 💬 if you agree.${n?`\n#${n.toLowerCase().replace(/\s/g,"")} #creator`:""}`,`POV: You finally cracked ${t} 🔥\n\nThis shift changed everything. Save before it disappears.\n\n👇 What's your experience?`,`${t} hit different today ✨\n\nConsistency > perfection. Who else is in this season? 💜`,`Nobody told me ${t} would feel this ${pick(["hard","rewarding","simple"])} 😅\n\nBut honestly? Best decision I made.\n\nDrop your story 👇`,`${pick(NUMS)} things ${t} taught me:\n\n1️⃣ Consistency beats perfection\n2️⃣ Your story is your superpower\n3️⃣ Start messy, refine later\n\n${pick(["Which hits hardest?","Save for when you need it 📌"])}`,]).slice(0,5);}
+function genHashtags(t){const k=(t||"content").toLowerCase().replace(/\s+/g,"");return[`#${k} #${k}tips #${k}community #${k}creator #contentcreator #creatortips #growyourinstagram #instagramgrowth #socialmediastrategy #explore`,`#${k}goals #${k}motivation #${k}vibes #${k}inspo #instadaily #reelsviral #reelsinstagram #explorepage #instareels #viral`,`#${k}niche #${k}brand #${k}journey #${k}success #${k}mindset #smallcreator #creatoreconomy #buildyourbrand #digitalmarketing #passiveincome`,];}
+function genBios(n){const nn=n||"creator";return shuffle([`✨ ${nn} helping you grow online\n🚀 Thousands of creators level'd up\n📩 DM for collabs → link below`,`${nn.charAt(0).toUpperCase()+nn.slice(1)} 🎯 | No fluff, just results\nI share what actually works\n💡 New content every week`,`Turning ${nn} into a full-time career 💸\nPosting daily ✅\n👇 Free ${nn} toolkit`,`Go-to source for ${nn} tips ⚡\nTips that saved me years\n💬 DM me — I reply to all`,`${nn} simplified for real people 🧠\n📌 Start here 👇`,]).slice(0,5);}
+function genReelHooks(t){return shuffle([`"Don't scroll. If ${t} ever frustrated you, this 30 seconds saves you months."`,`"POV: You just found the ${t} method that changes EVERYTHING."`,`"I'll tell you what took me 2 years to learn about ${t} in 30 seconds."`,`"This ${t} mistake is costing you — nobody talks about it."`,`"The biggest lie about ${t}: that you need to be perfect before starting."`,`"If ${t} is stressing you out — watch this. Right now."`,`"I was too embarrassed to share my ${t} story… but here it is."`,`"Okay real talk. Nobody tells you THIS about ${t}."`,`"Three seconds. Here's the ${t} secret I wish I knew 2 years ago:"`,]).slice(0,7);}
+function genViralIdeas(n){return shuffle([{fmt:"Reel",idea:`"Day in the life" as a ${n} creator — raw, unfiltered. Gets 3x more saves than polished content.`},{fmt:"Carousel",idea:`"${pick(NUMS)} mistakes I made in ${n} so you don't have to" — save-worthy, algorithm loves it.`},{fmt:"Reel",idea:`React to the worst ${n} advice online — controversy + value = algorithm gold.`},{fmt:"Post",idea:`Aesthetic quote with polarising hot take in caption — shareable content = massive reach.`},{fmt:"Carousel",idea:`Before/after transformation in ${n} — results posts get 4x the saves.`},{fmt:"Reel",idea:`"What I wish I knew before starting ${n}" — relatability drives comments.`},{fmt:"Stories",idea:`Poll: "What's your biggest ${n} struggle?" — instant engagement + future content ideas.`},]).slice(0,7);}
+
+/* Special generators */
+const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const DAY_TYPES=[{type:"🎬 Reel Idea",c:"#a78bfa"},{type:"✍️ Caption Post",c:"#93c5fd"},{type:"💡 Content Topic",c:"#6ee7b7"},{type:"🔥 Hook Line",c:"#fca5a5"},{type:"📸 Static Post",c:"#fde68a"},{type:"🚀 Viral Concept",c:"#f9a8d4"},{type:"📊 Carousel",c:"#a78bfa"}];
+const RP=n=>[`POV: You discovered the ${n} secret nobody talks about`,`I tried ${n} for 7 days — here's what happened`,`The ${n} mistake costing you everything`,`Day in the life: ${n} creator 🎥`,`${n} transformation you won't believe`,];
+const CP=n=>[`Why ${n} changed everything 💜`,`${n} is hard. But staying stuck is harder. Your move 👇`,`Nobody tells you this about ${n} 🔥`,`${pick(NUMS)} things ${n} taught me`,`This ${n} post saved my week 📌`,];
+const TP=n=>[`Why 90% fail at ${n}`,`The ${n} beginner roadmap for ${YR}`,`${n} myths vs reality`,`How I grew with ${n} from zero`,`Best ${n} tools nobody uses`,];
+const HP=n=>[`"Stop. This ${n} tip saves you months."`,`"I wish I knew this about ${n} earlier."`,`"The ${n} truth gurus won't share."`,`"One ${n} change = 10x results."`,];
+const PP=n=>[`Before/after: my ${n} journey`,`${n} checklist ✅ save this!`,`Rate my ${n} setup 1-10 👇`,`The ${n} resources that changed my life`,];
+const VP=n=>[`"Reacting to viral ${n} content"`,`"I spent $0 on ${n} for 30 days"`,`"${n} tier list: S to F 🔥"`,`"Following ${n} advice for a week"`,];
+const CAP=n=>[`"${pick(NUMS)} ${n} mistakes (slide 3 is shocking)"`,`"${n} in 60 seconds — swipe"`,`"My ${n} toolkit: tools I use daily"`,`"${n} cheat sheet — save now"`,];
+const POOLS=n=>[RP(n),CP(n),TP(n),HP(n),PP(n),VP(n),CAP(n)];
+function genPlan(niche){const n=niche||"your niche";return DAYS.map((day,i)=>({day,...DAY_TYPES[i],content:pick(POOLS(n)[i])}));}
+const PW_SC=["secret","free","viral","shocking","proven","ultimate","insane","best","mistake","exposed","truth","hidden","fastest","hack","game-changer"];
+function scoreTitle(title){
+  if(!title||title.trim().length<3)return null;
+  const t=title.toLowerCase();let score=0;const notes=[];
+  const len=title.length;
+  if(len>=40&&len<=60){score+=25;notes.push({ok:true,msg:`✅ Perfect length (${len} chars)`});}
+  else if(len>=30){score+=14;notes.push({ok:false,msg:`⚠️ ${len<40?"Too short":"A bit long"} (${len} chars) — ideal 40–60`});}
+  else{score+=4;notes.push({ok:false,msg:`❌ Too short (${len} chars)`});}
+  if(/\d/.test(title)){score+=20;notes.push({ok:true,msg:"✅ Has a number — boosts CTR by 36%"});}
+  else notes.push({ok:false,msg:"❌ No number — try '7 Ways' or '30 Days'"});
+  const pw=PW_SC.filter(w=>t.includes(w));
+  if(pw.length){score+=Math.min(pw.length*10,25);notes.push({ok:true,msg:`✅ Power words: ${pw.map(w=>'"'+w+'"').join(", ")}`});}
+  else notes.push({ok:false,msg:"❌ No power words — add: Secret, Proven, Viral"});
+  if(title.includes("?")||title.includes("!")){score+=10;notes.push({ok:true,msg:"✅ Punctuation adds curiosity & urgency"});}
+  score=Math.max(0,Math.min(100,score));
+  const color=score>=75?"#6ee7b7":score>=50?"#fde68a":"#fca5a5";
+  const label=score>=75?"Excellent 🔥":score>=60?"Good ⚡":score>=40?"Fair 📈":"Needs Work ❌";
+  const suggestions=[score<70&&!pw.length?`Add power word: "The ${pick(["Proven","Secret","Ultimate"])} Guide to..."`:null,!/\d/.test(title)?`Add number: "...in ${pick(["7","10","30"])} Days"`:null,len<40?`Expand: "${title} (${pick(["Step-By-Step","Full Guide"])})"`:null,len>65?"Trim under 65 chars":null,].filter(Boolean).slice(0,3);
+  return{score,color,label,notes,suggestions};
+}
+function genHashPerf(topic){const k=(topic||"creator").toLowerCase().replace(/\s+/g,"");
+  return{high:shuffle([`#${k}`,`#${k}tips`,`#contentcreator`,`#viral`,`#instagram`,`#reels`]).slice(0,5),med:shuffle([`#${k}community`,`#${k}life`,`#${k}inspo`,`#growyourpage`,`#instagramgrowth`,`#smallcreator`]).slice(0,6),low:shuffle([`#${k}niche`,`#${k}journey`,`#${k}goals`,`#${k}strategy`,`#${k}creator`,`#microinfluencer`]).slice(0,7)};}
+function genBA(topic){const t=topic||"your content";return{before:{title:pick([`My ${t} Video`,`${t} Tutorial`,`New ${t} Post`]),hook:pick([`"Hey guys, welcome back..."`,`"Today I'm talking about ${t}..."`,`"In this video we cover ${t}..."`]),caption:pick([`New post about ${t}! Hope you like it 😊`,`Check out my latest ${t} content!`])},after:{title:genTitles(t,"")[0],hook:pick(genHooks(t)),caption:genCaptions(t,"")[0].split("\n").slice(0,3).join("\n")}};}
+
+/* ── Hooks ── */
+function useCopy(){
+  const [copied,setCopied]=useState(null);
+  const copy=useCallback((text,key)=>{try{navigator.clipboard.writeText(text)}catch(e){};setCopied(key);if("vibrate"in navigator)navigator.vibrate(25);setTimeout(()=>setCopied(null),1800);},[]);
+  return{copied,copy};
+}
+function useToast(){
+  const [toasts,setToasts]=useState([]);
+  const show=useCallback(msg=>{const id=Date.now();setToasts(t=>[...t,{id,msg}]);setTimeout(()=>setToasts(t=>t.filter(x=>x.id!==id)),2500);},[]);
+  return{toasts,show};
+}
+
+/* ── Ad Unit ── */
+let _seq=0;
+function AdUnit({type="banner",label=true,style={}}){
+  const keys={banner:{key:"c34ed1cf5bd3f2cafac5f71196b818a9",w:320,h:50},rect:{key:"f5daaec4eb96071143585a8a8ba97cb1",w:300,h:250}};
+  const cfg=keys[type]||keys.banner;
+  const uid=useRef("ad_"+(++_seq)+"_"+Math.random().toString(36).slice(2,6));
+  const wrap=useRef(null);const done=useRef(false);
+  useEffect(()=>{
+    const el=wrap.current;if(!el)return;
+    const inject=()=>{if(done.current)return;done.current=true;const c=document.getElementById(uid.current);if(!c)return;window.atOptions={key:cfg.key,format:"iframe",height:cfg.h,width:cfg.w,params:{}};const sc=document.createElement("script");sc.src=`https://www.highperformanceformat.com/${cfg.key}/invoke.js`;sc.async=false;c.appendChild(sc);};
+    if("IntersectionObserver"in window){const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){inject();obs.disconnect();}},{rootMargin:"200px"});obs.observe(el);return()=>obs.disconnect();}
+    else{const t=setTimeout(inject,300);return()=>clearTimeout(t);}
+  },[]);
+  return(
+    <div ref={wrap} className="ad-wrap" style={style}>
+      {label&&<div className="ad-label">Sponsored</div>}
+      <div className="ad-box" style={{minWidth:cfg.w,minHeight:cfg.h}}><div id={uid.current} style={{width:cfg.w,minHeight:cfg.h}}/></div>
+    </div>
+  );
+}
+function AdB(p){return <AdUnit type="banner" {...p}/>;}
+function AdR(p){return <AdUnit type="rect" {...p}/>;}
+function InAd(){return <div style={{gridColumn:"1/-1"}}><AdUnit type="rect"/></div>;}
+
+/* ── Small UI ── */
+function Toast({toasts}){
+  if(!toasts.length)return null;
+  return(
+    <div style={{position:"fixed",bottom:90,right:14,zIndex:9999,display:"flex",flexDirection:"column",gap:7,pointerEvents:"none"}}>
+      {toasts.map(t=>(
+        <div key={t.id} style={{background:"rgba(16,185,129,.18)",border:"1px solid rgba(16,185,129,.32)",borderRadius:12,padding:"10px 16px",fontSize:13,fontWeight:700,color:"#6ee7b7",backdropFilter:"blur(12px)",animation:"toast-in .3s ease both",display:"flex",alignItems:"center",gap:7}}>
+          ✓ {t.msg}
+        </div>
+      ))}
+    </div>
+  );
+}
+function Spinner(){return <div className="spinner"/>;}
+function ThinkingDots(){return <div style={{display:"flex",gap:5}}><div className="dot"/><div className="dot"/><div className="dot"/></div>;}
+
+function LiveCounter({style={}}){
+  const [n,setN]=useState(()=>Math.floor(Math.random()*60)+30);
+  const [pop,setPop]=useState(false);
+  useEffect(()=>{const t=setInterval(()=>{setN(c=>Math.max(15,Math.min(120,c+Math.floor(Math.random()*7)-3)));setPop(true);setTimeout(()=>setPop(false),400);},(Math.random()*5000)+5000);return()=>clearInterval(t);},[]);
+  return(
+    <div className="live-pill" style={style}>
+      <div style={{position:"relative",display:"flex",alignItems:"center",justifyContent:"center",width:16,height:16,flexShrink:0}}>
+        <div className="live-ring" style={{position:"absolute",inset:-2}}/>
+        <div className="live-dot"/>
+      </div>
+      <span>🔥 <strong style={{...(pop?{color:"#fff"}:{})}}>{n}</strong> creators using this tool right now</span>
+    </div>
+  );
+}
+
+function TrendBar({onPick}){
+  return(
+    <div>
+      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
+        <span style={{fontWeight:700,fontSize:14,color:"rgba(255,255,255,.85)"}}>🔥 Trending Now</span>
+        <div style={{flex:1,height:1,background:"rgba(255,255,255,.08)"}}/>
+        <span style={{fontSize:11,color:"var(--txt3)"}}>Tap to auto-fill</span>
+      </div>
+      <div className="trend-scroll">
+        {TRENDING_TOPICS.map((t,i)=>(
+          <button key={i} className="trend-chip" onClick={()=>onPick(t.label)}>
+            <span>{t.icon}</span><span>{t.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OrbBg(){
+  const orbs=[{w:500,h:500,top:"-10%",left:"-15%",c:"rgba(124,58,237,0.1)",d:"22s"},{w:400,h:400,top:"30%",right:"-10%",c:"rgba(59,130,246,0.08)",d:"28s"},{w:300,h:300,bottom:"10%",left:"10%",c:"rgba(236,72,153,0.06)",d:"19s"}];
+  return(
+    <div style={{position:"fixed",inset:0,overflow:"hidden",pointerEvents:"none",zIndex:0}}>
+      {orbs.map((o,i)=><div key={i} style={{position:"absolute",width:o.w,height:o.h,top:o.top,left:o.left,right:o.right,bottom:o.bottom,background:`radial-gradient(circle,${o.c} 0%,transparent 70%)`,borderRadius:"50%",animation:`orb ${o.d} ease-in-out infinite`,animationDelay:`${i*4}s`}}/>)}
+    </div>
+  );
+}
+
+/* ── Result card ── */
+function RC({num,text,onCopy,isCopied,delay=0,hw=false}){
+  return(
+    <div className="result-card" style={{animation:`slide-in .3s ease ${delay}ms both`}}>
+      <div className="rnum">{num}</div>
+      <div style={{flex:1,fontSize:14,lineHeight:1.65,wordBreak:"break-word"}} dangerouslySetInnerHTML={hw?{__html:hlPW(text)}:{__html:text.replace(/[<>]/g,"")}}/>
+      <button className={`btn-copy${isCopied?" done":""}`} onClick={()=>onCopy(text)}>{isCopied?"✓":"Copy"}</button>
+    </div>
+  );
+}
+
+function SHdr({title,color="#7c3aed"}){
+  return(
+    <div className="sec-hdr">
+      <div className="sec-bar" style={{background:color}}/>
+      <div style={{fontWeight:700,fontSize:15,color:"#fff"}}>{title}</div>
+    </div>
+  );
+}
+
+function ErrBox({msg}){
+  if(!msg)return null;
+  return <div className="err">⚠️ {msg}</div>;
+}
+
+function Hint({example,onTry}){
+  return(
+    <div className="hint">
+      <span>💡 Example:</span>
+      <span style={{fontStyle:"italic",color:"rgba(147,197,253,.8)"}}>&ldquo;{example}&rdquo;</span>
+      <button className="btn-example" onClick={onTry}>Try it</button>
+    </div>
+  );
+}
+
+function TollHdr({icon,iconBg,name,desc}){
+  return(
+    <div style={{display:"flex",alignItems:"flex-start",gap:14,marginBottom:22}}>
+      <div style={{width:50,height:50,borderRadius:15,background:iconBg||"linear-gradient(135deg,#7c3aed,#3b82f6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>{icon}</div>
+      <div>
+        <h2 style={{fontSize:"clamp(18px,4vw,23px)",fontWeight:800,letterSpacing:"-.01em",marginBottom:4}}>{name}</h2>
+        <p style={{fontSize:13,color:"var(--txt2)",lineHeight:1.55}}>{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ── Modal ── */
+function Modal({title,icon,iconBg,onClose,children}){
+  useEffect(()=>{document.body.style.overflow="hidden";return()=>{document.body.style.overflow=""};});
+  return(
+    <div className="modal-over" onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div className="modal-box">
+        <div className="modal-head">
+          <div className="modal-handle" style={{display:"none"}}/>
+          <div style={{display:"flex",alignItems:"center",gap:12,flex:1,minWidth:0}}>
+            <div style={{width:38,height:38,borderRadius:11,background:iconBg||"var(--grad)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{icon}</div>
+            <h2 style={{fontSize:"clamp(15px,3vw,18px)",fontWeight:800,letterSpacing:"-.01em",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{title}</h2>
+          </div>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+        <div className="modal-body">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════════════════════ */
+function Navbar({cur,go}){
+  const [mob,setMob]=useState(false);
+  const links=[{l:"YouTube",r:R.YT},{l:"Instagram",r:R.IG},{l:"All Tools",r:R.ALL},{l:"About",r:R.ABOUT}];
+  useEffect(()=>setMob(false),[cur]);
+  return(
+    <>
+      <div className="navbar">
+        <button onClick={()=>go(R.HOME)} style={{background:"none",border:"none",cursor:"pointer",padding:0}}>
+          <span className="nav-logo">Virlofy.ai</span>
+        </button>
+        <div className="desk-nav" style={{gap:22}}>
+          {links.map(l=><button key={l.r} onClick={()=>go(l.r)} style={{background:"none",border:"none",cursor:"pointer",fontSize:14,fontWeight:500,color:cur===l.r?"#a78bfa":"rgba(255,255,255,.55)",transition:"color .18s"}}>{l.l}</button>)}
+          <button onClick={()=>go(R.ALL)} style={{background:"linear-gradient(135deg,#7c3aed,#3b82f6)",border:"none",cursor:"pointer",color:"#fff",fontSize:13,fontWeight:700,padding:"8px 18px",borderRadius:50,transition:"opacity .18s"}}>Start Free</button>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <div className="nav-bell mob-only" onClick={()=>{}}>🔔</div>
+          <div className="nav-ham mob-only" onClick={()=>setMob(m=>!m)}>{mob?"✕":"☰"}</div>
+        </div>
+      </div>
+      {mob&&(
+        <div className="drawer" onClick={e=>e.target===e.currentTarget&&setMob(false)}>
+          <div style={{display:"flex",alignItems:"center",gap:3,marginBottom:28}}>
+            <span className="nav-logo" style={{fontSize:22}}>Virlofy.ai</span>
+          </div>
+          {links.map(l=><button key={l.r} className={`dr-item${cur===l.r?" active":""}`} onClick={()=>go(l.r)}><span>{l.l==="YouTube"?"▶️":l.l==="Instagram"?"📸":l.l==="All Tools"?"🛠️":"ℹ️"}</span>{l.l}</button>)}
+          <div style={{height:1,background:"rgba(255,255,255,.06)",margin:"14px 0"}}/>
+          <button className="dr-item" onClick={()=>go(R.CONTACT)}><span>✉️</span>Contact</button>
+          <div style={{marginTop:18}}>
+            <button className="btn-grad" style={{width:"100%",justifyContent:"center",padding:"15px",borderRadius:50,fontSize:16}} onClick={()=>go(R.ALL)}>🚀 Explore All Tools</button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── Bottom nav ── */
+function BotNav({cur,go,setTool}){
+  const tabs=[{icon:"🏠",label:"Home",r:R.HOME},{icon:"⊞",label:"Tools",r:R.ALL},{icon:"📈",label:"Trending",r:R.TRENDING},{icon:"📅",label:"Planner",r:null,sp:"viral-planner"}];
+  return(
+    <nav className="bot-nav">
+      {tabs.map((t,i)=>(
+        <button key={i} className={`bot-btn${cur===t.r?" active":""}`} onClick={()=>{
+          if(t.sp){setTool({id:t.sp,...ADV_TOOLS.find(a=>a.id===t.sp)});go(R.TOOL);}
+          else go(t.r);
+        }}>
+          <span className="bi">{t.icon}</span>{t.label}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
+/* ── Footer ── */
+function Footer({go,setTool}){
+  const open=t=>{setTool(t);go(R.TOOL);};
+  return(
+    <footer style={{borderTop:"1px solid rgba(255,255,255,.06)",marginTop:52,padding:"30px 18px 24px"}}>
+      <AdB/>
+      <div style={{display:"grid",gap:22,gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",marginTop:20,marginBottom:20}}>
+        <div>
+          <div style={{fontSize:17,fontWeight:800,marginBottom:8}} className="nav-logo">Virlofy.ai</div>
+          <p style={{fontSize:12,color:"var(--txt3)",lineHeight:1.7}}>Free AI tools for creators.</p>
+        </div>
+        <div>
+          <div style={{fontWeight:700,fontSize:12,marginBottom:10,color:"var(--txt2)"}}>YouTube</div>
+          {YT_TOOLS.slice(0,4).map(t=><button key={t.id} onClick={()=>open(t)} style={{display:"block",background:"none",border:"none",color:"var(--txt3)",fontSize:12,padding:"3px 0",cursor:"pointer",textAlign:"left",fontFamily:"var(--f)"}}>{t.name}</button>)}
+        </div>
+        <div>
+          <div style={{fontWeight:700,fontSize:12,marginBottom:10,color:"var(--txt2)"}}>Instagram</div>
+          {IG_TOOLS.map(t=><button key={t.id} onClick={()=>open(t)} style={{display:"block",background:"none",border:"none",color:"var(--txt3)",fontSize:12,padding:"3px 0",cursor:"pointer",textAlign:"left",fontFamily:"var(--f)"}}>{t.name}</button>)}
+        </div>
+        <div>
+          <div style={{fontWeight:700,fontSize:12,marginBottom:10,color:"var(--txt2)"}}>Company</div>
+          {[{l:"About",r:R.ABOUT},{l:"Contact",r:R.CONTACT},{l:"Privacy",r:R.PRIVACY},{l:"Terms",r:R.TERMS}].map(x=><button key={x.r} onClick={()=>go(x.r)} style={{display:"block",background:"none",border:"none",color:"var(--txt3)",fontSize:12,padding:"3px 0",cursor:"pointer",textAlign:"left",fontFamily:"var(--f)"}}>{x.l}</button>)}
+        </div>
+      </div>
+      <div style={{borderTop:"1px solid rgba(255,255,255,.05)",paddingTop:14,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:8}}>
+        <span style={{fontSize:11,color:"var(--txt3)"}}>© {new Date().getFullYear()} Virlofy.ai</span>
+        <span style={{fontSize:11,color:"var(--txt3)"}}>support@virlofy.com</span>
+      </div>
+    </footer>
+  );
+}
+
+/* ══════════════════════════════════════════════════════
+   TOOL IMPLEMENTATIONS
+══════════════════════════════════════════════════════ */
+function YtTitleTool(){
+  const [topic,setTopic]=useState(""),[niche,setNiche]=useState("");
+  const [res,setRes]=useState(null),[loading,setLoading]=useState(false),[err,setErr]=useState("");
+  const {copied,copy}=useCopy();const {toasts,show}=useToast();
+  const ref=useRef(null);
+  const gen=()=>{if(!topic.trim()){setErr("Please enter a video topic.");return;}setErr("");setLoading(true);setRes(null);setTimeout(()=>{setRes({titles:genTitles(topic,niche),thumbs:genThumbs(topic),hooks:genHooks(topic)});setLoading(false);},900+Math.random()*500);};
+  useEffect(()=>{if(res)setTimeout(()=>ref.current?.scrollIntoView({behavior:"smooth",block:"start"}),150);},[res]);
+  return(
+    <div><Toast toasts={toasts}/>
+      <AdB/>
+      <Hint example="how to lose weight fast" onTry={()=>{setTopic("how to lose weight fast");setNiche("fitness");}}/>
+      <div className="input-area">
+        <label>Video Topic *</label>
+        <input value={topic} onChange={e=>setTopic(e.target.value)} placeholder="e.g. How I built 6-figure business from scratch" onKeyDown={e=>e.key==="Enter"&&gen()} style={{marginBottom:14}}/>
+        <label>Channel Niche (optional)</label>
+        <input value={niche} onChange={e=>setNiche(e.target.value)} placeholder="e.g. Fitness, Finance, Tech"/>
+        <ErrBox msg={err}/>
+        <div style={{display:"flex",gap:10,marginTop:16,flexWrap:"wrap"}}>
+          <button className="btn-grad" onClick={gen} disabled={loading}>{loading?<><Spinner/>Generating…</>:"✨ Generate Titles"}</button>
+          {res&&<button className="btn-outline" onClick={gen}>🔄 Regenerate</button>}
+        </div>
+      </div>
+      {loading&&<div style={{padding:"28px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",gap:12}}><ThinkingDots/><div style={{fontSize:14,fontWeight:600,color:"#a78bfa"}}>Crafting viral titles…</div></div>}
+      <div ref={ref}/>
+      {res&&(
+        <div style={{marginTop:22,display:"flex",flexDirection:"column",gap:20}}>
+          <div><SHdr title="🔥 Viral Titles"/>{res.titles.map((t,i)=><RC key={i} num={i+1} text={t} isCopied={copied===`tt${i}`} onCopy={v=>{copy(v,`tt${i}`);show("Title copied!");}} delay={i*28} hw/>)}</div>
+          <AdR/>
+          <div><SHdr title="🖼️ Thumbnail Concepts" color="#3b82f6"/>
+            {res.thumbs.map((t,i)=>(
+              <div key={i} className="result-card" style={{animation:`slide-in .3s ease ${i*35}ms both`,flexDirection:"column",gap:8}}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:8}}>
+                  <div>
+                    <div style={{fontSize:11,fontWeight:700,color:"#fde68a",textTransform:"uppercase",letterSpacing:".07em",marginBottom:4}}>{t.tone}</div>
+                    <div style={{fontWeight:800,fontSize:16,color:"#a78bfa"}}>&ldquo;{t.text}&rdquo;</div>
+                  </div>
+                  <button className={`btn-copy${copied===`th${i}`?" done":""}`} onClick={()=>{copy(`"${t.text}" — ${t.detail}`,`th${i}`);show("Copied!");}}>
+                    {copied===`th${i}`?"✓":"Copy"}
+                  </button>
+                </div>
+                <p style={{fontSize:13,color:"var(--txt2)",lineHeight:1.5}}>{t.detail}</p>
+              </div>
+            ))}
+          </div>
+          <div><SHdr title="🧠 Hook Lines (First 5 sec)" color="#10b981"/>{res.hooks.map((h,i)=><RC key={i} num={i+1} text={h} isCopied={copied===`hh${i}`} onCopy={v=>{copy(v,`hh${i}`);show("Copied!");}} delay={i*30}/>)}</div>
+          <AdR/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GenTool({toolId,tools}){
+  const tool=[...YT_TOOLS,...IG_TOOLS].find(t=>t.id===toolId)||YT_TOOLS[0];
+  const [inp,setInp]=useState(""),[inp2,setInp2]=useState("");
+  const [res,setRes]=useState(null),[loading,setLoading]=useState(false),[err,setErr]=useState("");
+  const {copied,copy}=useCopy();const {toasts,show}=useToast();
+  const ref=useRef(null);
+  const CFG={
+    "yt-hook":{l1:"Video Topic",p1:"e.g. morning routine hacks",l2:null},
+    "yt-script":{l1:"Video Topic",p1:"e.g. how to start investing",l2:"Niche (optional)"},
+    "yt-ideas":{l1:"Your Niche",p1:"e.g. personal finance, fitness, gaming",l2:null},
+    "yt-thumbnail":{l1:"Video Topic",p1:"e.g. I tried cold showers for 30 days",l2:null},
+    "yt-tags":{l1:"Video Topic",p1:"e.g. how to invest for beginners",l2:"Niche (optional)"},
+    "ig-caption":{l1:"Post Description",p1:"e.g. beach sunset with friends",l2:"Niche (optional)",ta:true},
+    "ig-hashtag":{l1:"Post Topic / Niche",p1:"e.g. fitness, travel, food",l2:null},
+    "ig-bio":{l1:"Your Niche",p1:"e.g. fitness coach for busy moms",l2:null},
+    "ig-reel":{l1:"Reel Topic",p1:"e.g. my 30-day transformation",l2:null},
+    "ig-viral":{l1:"Your Niche",p1:"e.g. personal finance for Gen Z",l2:null},
+  }[toolId]||{l1:"Input",p1:"",l2:null};
+
+  const GEN={
+    "yt-hook":()=>({items:genHooks(inp),title:"⚡ Hook Lines",c:"#a78bfa"}),
+    "yt-script":()=>({script:genScript(inp)}),
+    "yt-ideas":()=>({items:genIdeas(inp),title:"💡 Video Ideas",c:"#fde68a"}),
+    "yt-thumbnail":()=>({grid:genThumbTexts(inp)}),
+    "yt-tags":()=>({tags:genTags(inp,inp2)}),
+    "ig-caption":()=>({items:genCaptions(inp,inp2),title:"✍️ Captions",c:"#f9a8d4"}),
+    "ig-hashtag":()=>({sets:genHashtags(inp)}),
+    "ig-bio":()=>({items:genBios(inp),title:"👤 Bios",c:"#f9a8d4"}),
+    "ig-reel":()=>({items:genReelHooks(inp),title:"🎬 Reel Hooks",c:"#f9a8d4"}),
+    "ig-viral":()=>({viral:genViralIdeas(inp)}),
+  };
+  const gen=()=>{
+    if(!inp.trim()){setErr(`Enter ${CFG.l1.toLowerCase()}.`);return;}
+    setErr("");setLoading(true);setRes(null);
+    setTimeout(()=>{setRes(GEN[toolId]?.());setLoading(false);},900+Math.random()*400);
+  };
+  useEffect(()=>{if(res)setTimeout(()=>ref.current?.scrollIntoView({behavior:"smooth",block:"start"}),150);},[res]);
+  return(
+    <div><Toast toasts={toasts}/>
+      <AdB/>
+      <Hint example={tool.example} onTry={()=>setInp(tool.example)}/>
+      <div className="input-area">
+        <label>{CFG.l1} *</label>
+        {CFG.ta?<textarea value={inp} onChange={e=>setInp(e.target.value)} placeholder={CFG.p1} style={{marginBottom:CFG.l2?14:0}}/>:<input value={inp} onChange={e=>setInp(e.target.value)} placeholder={CFG.p1} onKeyDown={e=>e.key==="Enter"&&gen()} style={{marginBottom:CFG.l2?14:0}}/>}
+        {CFG.l2&&<><label style={{marginTop:14}}>{CFG.l2}</label><input value={inp2} onChange={e=>setInp2(e.target.value)} placeholder={`e.g. ${tool.example}`}/></>}
+        <ErrBox msg={err}/>
+        <div style={{display:"flex",gap:10,marginTop:16,flexWrap:"wrap"}}>
+          <button className="btn-grad" onClick={gen} disabled={loading}>{loading?<><Spinner/>Generating…</>:"✨ Generate"}</button>
+          {res&&<button className="btn-outline" onClick={gen}>🔄 More Like This</button>}
+        </div>
+      </div>
+      {loading&&<div style={{padding:"28px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",gap:12}}><ThinkingDots/><div style={{fontSize:14,fontWeight:600,color:"#a78bfa"}}>AI is crafting results…</div></div>}
+      <div ref={ref}/>
+      {res?.items&&<div style={{marginTop:20}}><SHdr title={res.title} color={res.c}/>{res.items.map((v,i)=><RC key={i} num={i+1} text={v} isCopied={copied===`gi${i}`} onCopy={vv=>{copy(vv,`gi${i}`);show("Copied!");}} delay={i*28} hw/>)}<AdR/></div>}
+      {res?.grid&&<div style={{marginTop:20}}><SHdr title="🖼️ Thumbnail Texts" color="#93c5fd"/><div style={{display:"grid",gap:8,gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))"}}>{res.grid.map((t,i)=><div key={i} className="result-card" style={{flexDirection:"column",gap:6,cursor:"pointer",justifyContent:"center",textAlign:"center",animation:`fade-up .3s ease ${i*35}ms both`}} onClick={()=>{copy(t,`tx${i}`);show("Copied!")}}><div style={{fontWeight:800,fontSize:15,padding:"6px 0",letterSpacing:".02em"}}>{t}</div><div style={{fontSize:11,color:copied===`tx${i}`?"#6ee7b7":"var(--txt3)",fontWeight:600}}>{copied===`tx${i}`?"✓ Copied":"Tap to copy"}</div></div>)}</div><AdR/></div>}
+      {res?.tags&&<div style={{marginTop:20}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:8}}><SHdr title="🏷️ Your Tags"/><button className={`btn-copy${copied==="all-tags"?" done":""}`} onClick={()=>{copy(res.tags.join(", "),"all-tags");show(`${res.tags.length} tags copied!`);}}>{copied==="all-tags"?"✓ All Copied":"📋 Copy All"}</button></div><div style={{display:"flex",flexWrap:"wrap",gap:7}}>{res.tags.map((t,i)=><button key={i} className="tag" onClick={()=>{copy(t,`tg${i}`);show("Tag copied!");}} style={{cursor:"pointer",border:"none",transition:"all .18s",...(copied===`tg${i}`?{background:"rgba(16,185,129,.15)",color:"#6ee7b7",border:"1px solid rgba(16,185,129,.3)"}:{})}}>{copied===`tg${i}`?"✓ "+t:"#"+t}</button>)}</div><AdR/></div>}
+      {res?.sets&&<div style={{marginTop:20}}><SHdr title="#️⃣ Hashtag Sets" color="#f9a8d4"/>{res.sets.map((s,i)=><div key={i} className="result-card" style={{animation:`fade-up .3s ease ${i*55}ms both`,flexDirection:"column",gap:8,marginBottom:10}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}><div style={{fontWeight:700,fontSize:13}}>Set {i+1} — {["High Reach","Balanced Growth","Niche Authority"][i]}</div><button className={`btn-copy${copied===`hs${i}`?" done":""}`} onClick={()=>{copy(s,`hs${i}`);show(`Set ${i+1} copied!`);}}>{copied===`hs${i}`?"✓":"Copy"}</button></div><p style={{fontSize:13,color:"var(--txt2)",lineHeight:1.8,wordBreak:"break-word"}}>{s}</p></div>)}<AdR/></div>}
+      {res?.viral&&<div style={{marginTop:20}}><SHdr title="🚀 Viral Ideas" color="#f9a8d4"/><div style={{display:"flex",flexDirection:"column",gap:9}}>{res.viral.map((item,i)=><div key={i} className="result-card" style={{animation:`slide-in .3s ease ${i*45}ms both`,flexDirection:"column",gap:8}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}><span style={{fontSize:11,fontWeight:700,color:"#f9a8d4",background:"rgba(236,72,153,.12)",border:"1px solid rgba(236,72,153,.25)",padding:"3px 9px",borderRadius:999}}>{item.fmt}</span><button className={`btn-copy${copied===`vl${i}`?" done":""}`} onClick={()=>{copy(item.idea,`vl${i}`);show("Copied!");}}>{copied===`vl${i}`?"✓":"Copy"}</button></div><p style={{fontSize:14,lineHeight:1.6}}>{item.idea}</p></div>)}</div><AdR/></div>}
+      {res?.script&&<div style={{marginTop:20,display:"flex",flexDirection:"column",gap:18}}>{[["🎬 Intro Ideas","#a78bfa",res.script.intro],["📌 Main Points","#93c5fd",res.script.main],["✅ Outro Ideas","#6ee7b7",res.script.outro]].map(([t,c,items])=><div key={t}><SHdr title={t} color={c}/>{items.map((it,i)=><RC key={i} num={i+1} text={it} isCopied={copied===`sc${t}${i}`} onCopy={v=>{copy(v,`sc${t}${i}`);show("Copied!");}} delay={i*28}/>)}</div>)}<AdR/></div>}
+    </div>
+  );
+}
+
+/* ── Special tool panels ── */
+function PlannerPanel(){
+  const [niche,setNiche]=useState(""),[plan,setPlan]=useState(null),[loading,setLoading]=useState(false),[err,setErr]=useState("");
+  const {copied,copy}=useCopy();const {toasts,show}=useToast();
+  const gen=()=>{if(!niche.trim()){setErr("Enter your niche.");return;}setErr("");setLoading(true);setPlan(null);setTimeout(()=>{setPlan(genPlan(niche));setLoading(false);},1000);};
+  const copyAll=()=>{if(!plan)return;copy(plan.map(d=>`${d.day} (${d.type}): ${d.content}`).join("\n"),"all-plan");show("Full plan copied!");};
+  return(
+    <div><Toast toasts={toasts}/>
+      <TrendBar onPick={v=>setNiche(v)}/>
+      <div style={{marginTop:14}}>
+        <label>Your Niche *</label>
+        <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+          <input style={{flex:1,minWidth:180}} value={niche} onChange={e=>setNiche(e.target.value)} placeholder="e.g. fitness, finance, travel" onKeyDown={e=>e.key==="Enter"&&gen()}/>
+          <button className="btn-grad" onClick={gen} disabled={loading} style={{borderRadius:50,padding:"12px 22px"}}>{loading?<><Spinner/>Planning…</>:"📅 Generate"}</button>
+        </div>
+        {err&&<div className="err" style={{marginTop:8}}>⚠️ {err}</div>}
+      </div>
+      {loading&&<div style={{padding:"24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",gap:12}}><ThinkingDots/><div style={{fontSize:14,fontWeight:600,color:"#a78bfa"}}>Building your 7-day plan…</div></div>}
+      {plan&&(
+        <div style={{marginTop:20}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:8}}>
+            <div style={{fontWeight:700,fontSize:15}}>📅 7-Day Content Plan</div>
+            <div style={{display:"flex",gap:8}}>
+              <button className="btn-copy" onClick={gen}>🔄 New Plan</button>
+              <button className={`btn-copy${copied==="all-plan"?" done":""}`} onClick={copyAll}>{copied==="all-plan"?"✓ Copied":"📋 Copy All"}</button>
+            </div>
+          </div>
+          <AdB/>
+          <div style={{display:"grid",gap:10,gridTemplateColumns:"repeat(auto-fill,minmax(230px,1fr))"}}>
+            {plan.map((d,i)=>(
+              <div key={i} className="cal-day" style={{animation:`fade-up .4s ease ${i*50}ms both`}}>
+                <div style={{fontSize:11,fontWeight:800,textTransform:"uppercase",letterSpacing:".1em",color:d.c,marginBottom:5}}>{d.day}</div>
+                <div style={{fontSize:11,fontWeight:600,color:"var(--txt2)",marginBottom:7}}>{d.type}</div>
+                <p style={{fontSize:13,lineHeight:1.6,marginBottom:10}}>{d.content}</p>
+                <button className={`btn-copy${copied===`plan${i}`?" done":""}`} onClick={()=>{copy(d.content,`plan${i}`);show("Copied!");}} style={{fontSize:11}}>{copied===`plan${i}`?"✓":"Copy"}</button>
+              </div>
+            ))}
+          </div>
+          <AdR/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ScorePanel(){
+  const [title,setTitle]=useState(""),[result,setResult]=useState(null);
+  const {toasts,show}=useToast();
+  const check=()=>{if(!title.trim())return;setResult(null);setTimeout(()=>setResult(scoreTitle(title)),400);};
+  return(
+    <div><Toast toasts={toasts}/>
+      <p style={{color:"var(--txt2)",fontSize:13,marginBottom:14}}>Paste any YouTube title to get an instant CTR score with power word analysis & improvement tips.</p>
+      <label>YouTube Title *</label>
+      <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:6}}>
+        <input style={{flex:1,minWidth:180}} value={title} onChange={e=>{setTitle(e.target.value);setResult(null);}} placeholder="e.g. I Tried Intermittent Fasting for 30 Days..." onKeyDown={e=>e.key==="Enter"&&check()}/>
+        <button className="btn-grad" onClick={check} disabled={!title.trim()} style={{borderRadius:50,padding:"12px 22px"}}>🎯 Score It</button>
+      </div>
+      <div style={{fontSize:12,color:"var(--txt3)",marginBottom:14}}>{title.length} chars {title.length>=40&&title.length<=60?"✅":title.length>0?"(ideal 40–60)":""}</div>
+      {result&&(
+        <div style={{animation:"fade-up .4s ease both"}}>
+          <div style={{display:"flex",alignItems:"center",gap:18,marginBottom:18,padding:"18px",background:"rgba(255,255,255,.03)",borderRadius:18,border:"1px solid rgba(255,255,255,.07)",flexWrap:"wrap",gap:14}}>
+            <div style={{width:86,height:86,borderRadius:"50%",background:`conic-gradient(${result.color} ${result.score*3.6}deg,rgba(255,255,255,.05) 0deg)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+              <div style={{width:66,height:66,borderRadius:"50%",background:"var(--bg)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+                <div style={{fontWeight:800,fontSize:22,color:result.color,lineHeight:1}}>{result.score}</div>
+                <div style={{fontSize:10,color:"var(--txt3)"}}>/100</div>
+              </div>
+            </div>
+            <div style={{flex:1,minWidth:130}}>
+              <div style={{fontWeight:800,fontSize:20,color:result.color,marginBottom:3}}>{result.label}</div>
+              <div style={{fontSize:13,color:"var(--txt2)",marginBottom:10}}>CTR Potential</div>
+              <div className="score-track"><div className="score-fill" style={{"--w":`${result.score}%`,width:`${result.score}%`,background:`linear-gradient(90deg,${result.score>=75?"#10b981":result.score>=50?"#f59e0b":"#ef4444"},${result.color})`}}/></div>
+            </div>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",gap:7,marginBottom:14}}>
+            {result.notes.map((n,i)=><div key={i} style={{fontSize:13,color:n.ok?"var(--txt2)":"rgba(252,165,165,.8)",padding:"8px 12px",background:n.ok?"rgba(255,255,255,.03)":"rgba(239,68,68,.06)",borderRadius:9,borderLeft:`3px solid ${n.ok?"#7c3aed":"#ef4444"}`}}>{n.msg}</div>)}
+          </div>
+          {result.suggestions.length>0&&(
+            <div style={{background:"rgba(124,58,237,.07)",border:"1px solid rgba(124,58,237,.22)",borderRadius:12,padding:"14px 16px",marginBottom:14}}>
+              <div style={{fontWeight:700,fontSize:13,marginBottom:8,color:"#a78bfa"}}>💡 Improvement Tips</div>
+              {result.suggestions.map((s,i)=><div key={i} style={{fontSize:13,color:"var(--txt2)",marginBottom:5,display:"flex",gap:6}}><span style={{color:"#a78bfa",flexShrink:0}}>→</span>{s}</div>)}
+            </div>
+          )}
+          <AdR/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function HashPerfPanel(){
+  const [topic,setTopic]=useState(""),[result,setResult]=useState(null),[loading,setLoading]=useState(false),[err,setErr]=useState("");
+  const {copied,copy}=useCopy();const {toasts,show}=useToast();
+  const gen=()=>{if(!topic.trim()){setErr("Enter a topic.");return;}setErr("");setLoading(true);setResult(null);setTimeout(()=>{setResult(genHashPerf(topic));setLoading(false);},700);};
+  const copyAll=()=>{if(!result)return;copy([...result.high,...result.med,...result.low].join(" "),"all-hp");show("All tags copied!");};
+  const Group=({tags,cls,label,icon,k})=>(
+    <div style={{marginBottom:16}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+        <span style={{fontSize:13,fontWeight:700}}>{icon} {label}</span>
+        <button className={`btn-copy${copied===k?" done":""}`} onClick={()=>{copy(tags.join(" "),k);show(`${label} copied!`);}} style={{fontSize:11}}>{copied===k?"✓":"Copy"}</button>
+      </div>
+      <div style={{display:"flex",flexWrap:"wrap",gap:7}}>{tags.map((t,i)=><span key={i} className={`tag ${cls}`} style={{cursor:"default"}}>{t}</span>)}</div>
+    </div>
+  );
+  return(
+    <div><Toast toasts={toasts}/>
+      <TrendBar onPick={v=>setTopic(v)}/>
+      <div style={{marginTop:14}}>
+        <label>Topic / Niche *</label>
+        <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+          <input style={{flex:1,minWidth:180}} value={topic} onChange={e=>setTopic(e.target.value)} placeholder="e.g. fitness, travel, finance" onKeyDown={e=>e.key==="Enter"&&gen()}/>
+          <button className="btn-grad" onClick={gen} disabled={loading} style={{borderRadius:50,padding:"12px 22px"}}>{loading?<><Spinner/>Analysing…</>:"🔥 Generate"}</button>
+        </div>
+        {err&&<div className="err" style={{marginTop:8}}>⚠️ {err}</div>}
+      </div>
+      {loading&&<div style={{padding:"24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",gap:12}}><ThinkingDots/><div style={{fontSize:14,fontWeight:600,color:"#a78bfa"}}>Analysing performance…</div></div>}
+      {result&&(
+        <div style={{marginTop:20,animation:"fade-up .4s ease both"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,flexWrap:"wrap",gap:8}}>
+            <div style={{fontWeight:700,fontSize:15}}>Performance Sets</div>
+            <button className={`btn-copy${copied==="all-hp"?" done":""}`} onClick={copyAll}>{copied==="all-hp"?"✓ All Copied":"📋 Copy All"}</button>
+          </div>
+          <Group tags={result.high} cls="hp-h" label="High Reach" icon="🔥" k="hp-h"/>
+          <Group tags={result.med} cls="hp-m" label="Medium Growth" icon="⚡" k="hp-m"/>
+          <Group tags={result.low} cls="hp-l" label="Low Competition" icon="🎯" k="hp-l"/>
+          <div style={{background:"rgba(124,58,237,.06)",border:"1px solid rgba(124,58,237,.2)",borderRadius:12,padding:"12px 14px",fontSize:13,color:"var(--txt2)",lineHeight:1.7}}>💡 <strong style={{color:"#fff"}}>Pro tip:</strong> Mix 2–3 from each tier for best reach + ranking.</div>
+          <AdR/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BAPanel(){
+  const [topic,setTopic]=useState(""),[result,setResult]=useState(null),[loading,setLoading]=useState(false),[err,setErr]=useState("");
+  const {copied,copy}=useCopy();const {toasts,show}=useToast();
+  const gen=()=>{if(!topic.trim()){setErr("Enter a topic.");return;}setErr("");setLoading(true);setResult(null);setTimeout(()=>{setResult(genBA(topic));setLoading(false);},900);};
+  const Row=({label,val,ck})=>(
+    <div className="ba-row">
+      <div style={{fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:".08em",opacity:.7,marginBottom:3}}>{label}</div>
+      <div style={{wordBreak:"break-word",marginBottom:8}}>{val}</div>
+      <button className={`btn-copy${copied===ck?" done":""}`} onClick={()=>{copy(val,ck);show("Copied!");}} style={{fontSize:11,background:"rgba(255,255,255,.05)",color:"var(--txt2)",borderColor:"rgba(255,255,255,.1)"}}>{copied===ck?"✓":"Copy"}</button>
+    </div>
+  );
+  return(
+    <div><Toast toasts={toasts}/>
+      <p style={{color:"var(--txt2)",fontSize:13,marginBottom:14}}>See weak vs viral content side-by-side. Copy the upgraded versions instantly.</p>
+      <label>Topic *</label>
+      <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+        <input style={{flex:1,minWidth:180}} value={topic} onChange={e=>setTopic(e.target.value)} placeholder="e.g. fitness reel, travel vlog, finance tips" onKeyDown={e=>e.key==="Enter"&&gen()}/>
+        <button className="btn-grad" onClick={gen} disabled={loading} style={{borderRadius:50,padding:"12px 22px"}}>{loading?<><Spinner/>Transforming…</>:"⚡ Transform"}</button>
+      </div>
+      {err&&<div className="err" style={{marginTop:8}}>⚠️ {err}</div>}
+      {loading&&<div style={{padding:"24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",gap:12}}><ThinkingDots/><div style={{fontSize:14,fontWeight:600,color:"#a78bfa"}}>Transforming content…</div></div>}
+      {result&&(
+        <div style={{marginTop:20,animation:"fade-up .4s ease both"}}>
+          <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+            <div className="ba-b" style={{minWidth:"min(100%,250px)"}}>
+              <div style={{fontWeight:800,fontSize:14,marginBottom:10,color:"#fca5a5"}}>❌ Before</div>
+              <Row label="Title" val={result.before.title} ck="bb-t"/>
+              <Row label="Hook" val={result.before.hook} ck="bb-h"/>
+              <Row label="Caption" val={result.before.caption} ck="bb-c"/>
+            </div>
+            <div className="ba-a" style={{minWidth:"min(100%,250px)"}}>
+              <div style={{fontWeight:800,fontSize:14,marginBottom:10,color:"#6ee7b7"}}>✅ After</div>
+              <Row label="Title" val={result.after.title} ck="ba-t"/>
+              <Row label="Hook" val={result.after.hook} ck="ba-h"/>
+              <Row label="Caption" val={result.after.caption} ck="ba-c"/>
+            </div>
+          </div>
+          <div style={{textAlign:"center",marginTop:12}}><button className="btn-outline" onClick={gen} style={{borderRadius:50}}>🔄 Transform Again</button></div>
+          <AdR/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SpecPanel({id}){
+  const map={"viral-planner":<PlannerPanel/>,"title-score":<ScorePanel/>,"hashtag-perf":<HashPerfPanel/>,"before-after":<BAPanel/>};
+  return map[id]||null;
+}
+
+/* ══════════════════════════════════════════════════════
+   PAGES
+══════════════════════════════════════════════════════ */
+
+function HomePage({go,setTool}){
+  const [modal,setModal]=useState(null);
+  const open=t=>{setTool(t);go(R.TOOL);};
+  return(
+    <div style={{position:"relative",zIndex:1}}>
+      {modal&&<Modal title={modal.name} icon={modal.icon} iconBg={modal.iconBg} onClose={()=>setModal(null)}><SpecPanel id={modal.id}/></Modal>}
+
+      {/* Hero Section */}
+      <div style={{padding:"88px 18px 0",maxWidth:680,margin:"0 auto",textAlign:"center"}}>
+        <div style={{marginBottom:20}}>
+          <LiveCounter style={{display:"inline-flex"}}/>
+        </div>
+        <h1 className="fu d1" style={{fontSize:"clamp(30px,8vw,52px)",fontWeight:900,lineHeight:1.08,letterSpacing:"-.02em",marginBottom:14}}>
+          All-in-One <span className="g-text">AI Tool</span><br/>for Content Creators
+        </h1>
+        <p className="fu d2" style={{fontSize:"clamp(14px,2.5vw,17px)",color:"var(--txt2)",lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>
+          Create viral content in seconds — 100% free.
+        </p>
+        <div className="fu d3" style={{padding:"0 0 28px"}}>
+          <button className="btn-main" onClick={()=>go(R.ALL)}>Start Creating</button>
+        </div>
+
+        {/* Ad */}
+        <AdB/>
+      </div>
+
+      {/* Core Tools Section */}
+      <div style={{padding:"8px 18px 0",maxWidth:680,margin:"0 auto"}}>
+        <div style={{marginBottom:16,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+          <h2 className="sec-title">Core Tools</h2>
+          <button onClick={()=>go(R.ALL)} style={{background:"none",border:"none",color:"#a78bfa",fontSize:13,fontWeight:600,cursor:"pointer"}}>See all →</button>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+          {CORE_TOOLS.map((t,i)=>(
+            <div key={t.id} className="tool-card" onClick={()=>open(t)} style={{animation:`fade-up .45s ease ${i*55}ms both`}}>
+              <div className="tool-icon-wrap" style={{background:t.iconBg}}>
+                {t.iconStyle?<span style={t.iconStyle}>{t.icon}</span>:<span style={{fontSize:20}}>{t.icon}</span>}
+              </div>
+              <div style={{fontWeight:700,fontSize:15,marginBottom:4,letterSpacing:"-.01em"}}>{t.name}</div>
+              <div style={{fontSize:12,color:"var(--txt2)",lineHeight:1.4}}>{t.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Ad between sections */}
+      <div style={{padding:"0 18px",maxWidth:680,margin:"0 auto"}}>
+        <AdR/>
+      </div>
+
+      {/* Advanced Features Section */}
+      <div style={{padding:"8px 18px 0",maxWidth:680,margin:"0 auto"}}>
+        <h2 className="sec-title" style={{marginBottom:14}}>Advanced Features</h2>
+        {ADV_TOOLS.map((t,i)=>(
+          <div key={t.id} className="feat-row" onClick={()=>setModal(t)} style={{animation:`fade-up .45s ease ${i*60}ms both`}}>
+            <div className="feat-icon" style={{background:t.iconBg}}>{t.icon}</div>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontWeight:700,fontSize:15,marginBottom:3}}>{t.name}</div>
+              <div style={{fontSize:13,color:"var(--txt2)"}}>{t.desc}</div>
+            </div>
+            <div className="feat-chevron">›</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Trending */}
+      <div style={{padding:"24px 18px 0",maxWidth:680,margin:"0 auto"}}>
+        <TrendBar onPick={()=>{}}/>
+      </div>
+
+      {/* IG Tools */}
+      <div style={{padding:"24px 18px 0",maxWidth:680,margin:"0 auto"}}>
+        <div style={{marginBottom:14,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+          <h2 className="sec-title" style={{marginBottom:0}}>Instagram Tools</h2>
+          <button onClick={()=>go(R.IG)} style={{background:"none",border:"none",color:"#a78bfa",fontSize:13,fontWeight:600,cursor:"pointer"}}>See all →</button>
+        </div>
+        <AdR/>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginTop:14}}>
+          {IG_TOOLS.slice(0,4).map((t,i)=>(
+            <div key={t.id} className="tool-card" onClick={()=>open(t)} style={{animation:`fade-up .45s ease ${i*55}ms both`}}>
+              <div className="tool-icon-wrap" style={{background:"linear-gradient(135deg,#7c3aed,#ec4899)"}}><span style={{fontSize:20}}>{t.icon}</span></div>
+              <div style={{fontWeight:700,fontSize:15,marginBottom:4}}>{t.name}</div>
+              <div style={{fontSize:12,color:"var(--txt2)",lineHeight:1.4}}>{t.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA Banner */}
+      <div style={{padding:"28px 18px",maxWidth:680,margin:"0 auto"}}>
+        <div style={{background:"linear-gradient(135deg,rgba(124,58,237,.15),rgba(59,130,246,.12))",border:"1px solid rgba(124,58,237,.25)",borderRadius:22,padding:"26px 22px",textAlign:"center"}}>
+          <LiveCounter style={{display:"inline-flex",marginBottom:14}}/>
+          <h3 style={{fontSize:"clamp(19px,4vw,26px)",fontWeight:800,marginBottom:10,marginTop:12,letterSpacing:"-.01em"}}>Ready to Go <span className="g-text">Viral</span>?</h3>
+          <p style={{color:"var(--txt2)",fontSize:14,marginBottom:22,lineHeight:1.65}}>Join thousands of creators using Virlofy — 100% free, no login required.</p>
+          <button className="btn-main" onClick={()=>go(R.ALL)}>🚀 Start Creating Now</button>
+        </div>
+      </div>
+
+      <div style={{maxWidth:680,margin:"0 auto"}}>
+        <Footer go={go} setTool={setTool}/>
+      </div>
+    </div>
+  );
+}
+
+function ToolListPage({go,setTool,mode}){
+  const open=t=>{setTool(t);go(R.TOOL);};
+  const [modal,setModal]=useState(null);
+  const isYT=mode==="yt",isIG=mode==="ig";
+  const title=isYT?"YouTube Tools":isIG?"Instagram Tools":"All Tools";
+  const tools=isYT?YT_TOOLS:isIG?IG_TOOLS:[...YT_TOOLS,...IG_TOOLS];
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:680,margin:"0 auto"}}>
+      {modal&&<Modal title={modal.name} icon={modal.icon} iconBg={modal.iconBg} onClose={()=>setModal(null)}><SpecPanel id={modal.id}/></Modal>}
+      <div style={{marginBottom:20,textAlign:"center"}} className="fu">
+        <h1 style={{fontSize:"clamp(24px,6vw,40px)",fontWeight:800,marginBottom:10,letterSpacing:"-.01em"}}>
+          <span className="g-text">{title}</span>
+        </h1>
+        <LiveCounter style={{display:"inline-flex"}}/>
+      </div>
+      <TrendBar onPick={()=>{}}/>
+      <AdB/>
+      {!isIG&&(
+        <div style={{marginBottom:22,marginTop:14}}>
+          <h2 className="sec-title">Advanced Features</h2>
+          {ADV_TOOLS.map((t,i)=>(
+            <div key={t.id} className="feat-row" onClick={()=>setModal(t)}>
+              <div className="feat-icon" style={{background:t.iconBg}}>{t.icon}</div>
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontWeight:700,fontSize:15,marginBottom:2}}>{t.name}</div>
+                <div style={{fontSize:13,color:"var(--txt2)"}}>{t.desc}</div>
+              </div>
+              <div className="feat-chevron">›</div>
+            </div>
+          ))}
+        </div>
+      )}
+      <AdR/>
+      <h2 className="sec-title" style={{marginTop:8,marginBottom:14}}>{isIG?"Instagram":isYT?"YouTube":"All"} Tools</h2>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+        {tools.slice(0,4).map((t,i)=>(
+          <div key={t.id} className="tool-card" onClick={()=>open(t)} style={{animation:`fade-up .4s ease ${i*50}ms both`}}>
+            <div className="tool-icon-wrap" style={{background:t.badge==="yt"?"linear-gradient(135deg,#7c3aed,#3b82f6)":"linear-gradient(135deg,#7c3aed,#ec4899)"}}>{t.icon}</div>
+            <div style={{fontWeight:700,fontSize:15,marginBottom:4}}>{t.name}</div>
+            <div style={{fontSize:12,color:"var(--txt2)",lineHeight:1.4}}>{t.desc}</div>
+          </div>
+        ))}
+        {tools.length>4&&<InAd/>}
+        {tools.slice(4).map((t,i)=>(
+          <div key={t.id} className="tool-card" onClick={()=>open(t)} style={{animation:`fade-up .4s ease ${(i+4)*50}ms both`}}>
+            <div className="tool-icon-wrap" style={{background:t.badge==="yt"?"linear-gradient(135deg,#7c3aed,#3b82f6)":"linear-gradient(135deg,#7c3aed,#ec4899)"}}>{t.icon}</div>
+            <div style={{fontWeight:700,fontSize:15,marginBottom:4}}>{t.name}</div>
+            <div style={{fontSize:12,color:"var(--txt2)",lineHeight:1.4}}>{t.desc}</div>
+          </div>
+        ))}
+      </div>
+      <AdB style={{marginTop:16}}/>
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+function TrendingPage({go,setTool}){
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:680,margin:"0 auto"}}>
+      <div style={{textAlign:"center",marginBottom:24}} className="fu">
+        <h1 style={{fontSize:"clamp(24px,6vw,40px)",fontWeight:800,marginBottom:8,letterSpacing:"-.01em"}}>🔥 <span className="g-text">Trending Topics</span></h1>
+        <p style={{color:"var(--txt2)",fontSize:14}}>Tap any topic to jump straight to the right tool</p>
+      </div>
+      <AdB/>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:20}}>
+        {TRENDING_TOPICS.map((t,i)=>(
+          <div key={i} className="tool-card" style={{textAlign:"center",padding:"20px 14px",animation:`fade-up .4s ease ${i*35}ms both`}}
+            onClick={()=>{setTool({id:"yt-ideas",icon:"💡",name:"Content Ideas",desc:"",badge:"yt",example:t.label});go(R.TOOL);}}>
+            <div style={{fontSize:34,marginBottom:8}}>{t.icon}</div>
+            <div style={{fontWeight:700,fontSize:14,marginBottom:3}}>{t.label}</div>
+            <div style={{fontSize:11,color:"var(--txt2)"}}>Tap to generate</div>
+          </div>
+        ))}
+      </div>
+      <AdR/>
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+const TOOL_MAP={
+  "yt-title":<YtTitleTool/>,
+  "yt-hook":<GenTool toolId="yt-hook"/>,
+  "yt-script":<GenTool toolId="yt-script"/>,
+  "yt-ideas":<GenTool toolId="yt-ideas"/>,
+  "yt-thumbnail":<GenTool toolId="yt-thumbnail"/>,
+  "yt-tags":<GenTool toolId="yt-tags"/>,
+  "ig-caption":<GenTool toolId="ig-caption"/>,
+  "ig-hashtag":<GenTool toolId="ig-hashtag"/>,
+  "ig-bio":<GenTool toolId="ig-bio"/>,
+  "ig-reel":<GenTool toolId="ig-reel"/>,
+  "ig-viral":<GenTool toolId="ig-viral"/>,
+};
+
+function ToolPage({tool,go,setTool}){
+  if(!tool)return null;
+  const isSpecial=ADV_TOOLS.some(t=>t.id===tool.id);
+  const isYT=tool.badge==="yt";
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:680,margin:"0 auto"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20,flexWrap:"wrap",gap:10}}>
+        <button className="btn-outline" onClick={()=>go(isYT?R.YT:isSpecial?R.ALL:R.IG)} style={{padding:"9px 16px",fontSize:13,borderRadius:50}}>
+          ← Back
+        </button>
+        <LiveCounter/>
+      </div>
+      <TollHdr icon={tool.icon} iconBg={tool.iconBg||"linear-gradient(135deg,#7c3aed,#3b82f6)"} name={tool.name} desc={tool.desc}/>
+      {isSpecial?<div className="input-area" style={{borderRadius:20}}><SpecPanel id={tool.id}/></div>:TOOL_MAP[tool.id]||<p style={{color:"var(--txt2)"}}>Tool not found.</p>}
+      <AdB style={{marginTop:16}}/>
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+function AboutPage({go,setTool}){
+  const items=[
+    {icon:"🎯",title:"Our Mission",text:"Virlofy democratises content creation. Every creator deserves powerful tools to grow, go viral, and build a real audience — regardless of budget."},
+    {icon:"🆓",title:"100% Free Forever",text:"No login, no subscription, no paywall. Every tool is free. Sustained by non-intrusive ads so you can focus on creating."},
+    {icon:"⚡",title:"Smart AI Templates",text:"15–20+ templates per tool with randomised tone, style, and structure. Every output is unique — no two results are the same."},
+    {icon:"📱",title:"Mobile-First Design",text:"Built for creators on the go. Every button, card, and input is optimised for one-thumb use on your phone."},
+    {icon:"🔒",title:"Privacy First",text:"We don't collect your data, require accounts, or store inputs. Your creative process is 100% private — always."},
+  ];
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:680,margin:"0 auto"}}>
+      <div className="fu" style={{textAlign:"center",marginBottom:28}}>
+        <div style={{width:62,height:62,borderRadius:18,margin:"0 auto 14px",background:"linear-gradient(135deg,#7c3aed,#3b82f6)",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:24,color:"#fff",boxShadow:"0 8px 32px rgba(124,58,237,.4)"}}>V</div>
+        <h1 style={{fontSize:"clamp(24px,6vw,40px)",fontWeight:800,marginBottom:6,letterSpacing:"-.02em"}}>About <span className="g-text">Virlofy.ai</span></h1>
+        <p style={{color:"var(--txt2)",fontSize:14,fontStyle:"italic"}}>The Free AI Platform for Creators</p>
+      </div>
+      <div style={{display:"flex",flexDirection:"column",gap:10}}>
+        {items.map((it,i)=>(
+          <div key={i} className="card" style={{padding:"18px",display:"flex",gap:14,animation:`fade-up .45s ease ${i*60}ms both`}}>
+            <div style={{fontSize:24,flexShrink:0,marginTop:2}}>{it.icon}</div>
+            <div>
+              <div style={{fontWeight:700,fontSize:15,marginBottom:5}}>{it.title}</div>
+              <p style={{color:"var(--txt2)",fontSize:13.5,lineHeight:1.7}}>{it.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{textAlign:"center",marginTop:28}}>
+        <button className="btn-grad" onClick={()=>go(R.ALL)} style={{padding:"14px 32px",borderRadius:50,fontSize:15}}>🚀 Start Using Tools</button>
+      </div>
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+function LegalPage({go,setTool,type}){
+  const isP=type==="privacy";
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:680,margin:"0 auto"}} className="legal">
+      <h1 style={{fontSize:"clamp(22px,5vw,36px)",fontWeight:800,marginBottom:4,letterSpacing:"-.01em"}}>
+        {isP?<>Privacy <span className="g-text">Policy</span></>:<>Terms &amp; <span className="g-text">Conditions</span></>}
+      </h1>
+      <p style={{color:"var(--txt3)",fontSize:13,marginBottom:28}}>Last updated: {new Date().toLocaleDateString("en-GB",{month:"long",year:"numeric"})}</p>
+      {isP?(<>
+        <h2>1. Information We Collect</h2><p>Virlofy does not collect personally identifiable information. No accounts or personal details required.</p>
+        <h2>2. Cookies</h2><p>Analytics, advertising (Adsterra, Google Analytics), and functional cookies.</p>
+        <h2>3. Advertising</h2><p>Third-party ads may use cookies for personalisation. Opt out at <a href="https://aboutads.info" target="_blank" rel="noreferrer">aboutads.info</a>.</p>
+        <h2>4. User Inputs</h2><p>All processing happens in your browser. We never store or transmit your inputs.</p>
+        <h2>5. Contact</h2><p><a href="mailto:support@virlofy.com">support@virlofy.com</a></p>
+      </>):(<>
+        <h2>1. Acceptance</h2><p>By using Virlofy, you agree to these Terms.</p>
+        <h2>2. Free Use</h2><p>All tools are free for personal and commercial use. Do not resell or redistribute the tool system.</p>
+        <h2>3. No Warranty</h2><p>Tools provided "as is". We don't guarantee outputs will be accurate or viral.</p>
+        <h2>4. Limitation of Liability</h2><p>Virlofy is not liable for damages from use of the platform.</p>
+        <h2>5. Contact</h2><p><a href="mailto:support@virlofy.com">support@virlofy.com</a></p>
+      </>)}
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+function ContactPage({go,setTool}){
+  const [form,setForm]=useState({name:"",email:"",msg:""}),[sent,setSent]=useState(false);
+  const sub=e=>{e.preventDefault();if(!form.name.trim()||!form.email.trim()||!form.msg.trim())return;setSent(true);};
+  return(
+    <div style={{padding:"78px 18px 24px",maxWidth:560,margin:"0 auto"}}>
+      <div className="fu" style={{textAlign:"center",marginBottom:24}}>
+        <h1 style={{fontSize:"clamp(24px,6vw,38px)",fontWeight:800,marginBottom:6,letterSpacing:"-.01em"}}>Get in <span className="g-text">Touch</span></h1>
+        <p style={{color:"var(--txt2)",fontSize:14}}>Questions, feedback or collabs? We reply fast.</p>
+      </div>
+      {!sent?(
+        <form onSubmit={sub} style={{background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)",borderRadius:22,padding:"22px 20px"}}>
+          <div style={{marginBottom:14}}><label>Name *</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))}/></div>
+          <div style={{marginBottom:14}}><label>Email *</label><input type="email" value={form.email} onChange={e=>setForm(f=>({...f,email:e.target.value}))}/></div>
+          <div style={{marginBottom:18}}><label>Message *</label><textarea rows={5} value={form.msg} onChange={e=>setForm(f=>({...f,msg:e.target.value}))}/></div>
+          <button type="submit" className="btn-main" style={{fontSize:15,borderRadius:50}}>✉️ Send Message</button>
+          <p style={{textAlign:"center",fontSize:12,color:"var(--txt3)",marginTop:12}}>Or: <a href="mailto:support@virlofy.com" style={{color:"#a78bfa"}}>support@virlofy.com</a></p>
+        </form>
+      ):(
+        <div style={{background:"rgba(16,185,129,.07)",border:"1px solid rgba(16,185,129,.2)",borderRadius:22,padding:"40px 22px",textAlign:"center",animation:"fade-up .4s ease both"}}>
+          <div style={{fontSize:52,marginBottom:12}}>✅</div>
+          <h2 style={{fontWeight:800,fontSize:22,marginBottom:8}}>Message Sent!</h2>
+          <p style={{color:"var(--txt2)",fontSize:14,lineHeight:1.7}}>We reply within 24–48 hrs at <strong>support@virlofy.com</strong></p>
+          <button className="btn-outline" style={{marginTop:20,borderRadius:50}} onClick={()=>setSent(false)}>Send Another</button>
+        </div>
+      )}
+      <Footer go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════
+   APP ROOT
+══════════════════════════════════════════════════════ */
+function App(){
+  const [route,setRoute]=useState(R.HOME);
+  const [tool,setTool]=useState(null);
+  const go=useCallback(r=>{setRoute(r);window.scrollTo({top:0,behavior:"smooth"});},[]);
+
+  const pages={
+    [R.HOME]:    <HomePage    go={go} setTool={setTool}/>,
+    [R.YT]:      <ToolListPage go={go} setTool={setTool} mode="yt"/>,
+    [R.IG]:      <ToolListPage go={go} setTool={setTool} mode="ig"/>,
+    [R.ALL]:     <ToolListPage go={go} setTool={setTool} mode="all"/>,
+    [R.TRENDING]:<TrendingPage go={go} setTool={setTool}/>,
+    [R.ABOUT]:   <AboutPage   go={go} setTool={setTool}/>,
+    [R.PRIVACY]: <LegalPage   go={go} setTool={setTool} type="privacy"/>,
+    [R.TERMS]:   <LegalPage   go={go} setTool={setTool} type="terms"/>,
+    [R.CONTACT]: <ContactPage go={go} setTool={setTool}/>,
+    [R.TOOL]:    <ToolPage    tool={tool} go={go} setTool={setTool}/>,
+  };
+
+  return(
+    <div style={{position:"relative",minHeight:"100vh",overflowX:"hidden"}}>
+      <OrbBg/>
+      <div style={{position:"relative",zIndex:1}}>
+        <Navbar cur={route} go={go}/>
+        {pages[route]||pages[R.HOME]}
+      </div>
+      <BotNav cur={route} go={go} setTool={setTool}/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
